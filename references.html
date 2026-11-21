@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>References · Continuous Variation</title>
+<meta name="description" content="Sources for the Continuous Variation module: the original papers on Job's method, reviews, the literature examples for each type of measurement, and the constants behind the applications and problems.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236a48ad'/%3E%3Cpath d='M4 26 L20 8 L28 26' fill='none' stroke='white' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<style>
+/* Same tokens as the module page, so both pages read as one site. */
+:root{
+  --bg:#f3f6f7; --surface:#ffffff; --surface-2:#e8eff2; --ink:#13222c; --muted:#52626d; --line:#d0dbe0;
+  --accent:#6a48ad; --accent-soft:#e8e1f6; --data:#1d6a94;
+  --f-body:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e161b; --surface:#152129; --surface-2:#1c2b34; --ink:#e4edf1; --muted:#9caeb9; --line:#2b3c46;
+  --accent:#b597ea; --accent-soft:#2a2240; --data:#62b3df; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e161b; --surface:#152129; --surface-2:#1c2b34; --ink:#e4edf1; --muted:#9caeb9; --line:#2b3c46;
+  --accent:#b597ea; --accent-soft:#2a2240; --data:#62b3df; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
+a{color:var(--data);overflow-wrap:anywhere}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{background:var(--surface);border-bottom:1px solid var(--line)}
+header .wrap{padding-block:36px 28px;display:grid;gap:10px}
+.back{font-weight:600;text-decoration:none;font-size:.95rem}
+.back:hover{text-decoration:underline}
+.eyebrow{font-family:var(--f-body);font-size:calc(.78rem + 6px);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-size:clamp(2rem,5vw,2.8rem);line-height:1.15;margin:0;letter-spacing:-.01em}
+h2{font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:0}
+main .wrap{padding-block:28px 56px;display:grid;gap:30px}
+.group{display:grid;gap:12px;scroll-margin-top:16px}
+ol.refs{margin:0;padding-left:2.2em;display:grid;gap:12px}
+ol.refs li{padding-left:4px;scroll-margin-top:16px}
+ol.refs li::marker{font-family:var(--f-body);color:var(--muted);font-size:.9em}
+ol.refs li:target{background:var(--accent-soft);border-radius:6px;outline:6px solid var(--accent-soft)}
+.cite{display:block;overflow-wrap:anywhere}
+.use{display:block;font-size:.88rem;color:var(--muted)}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:8px;font-size:.95rem}
+.note h2{font-size:1.05rem}
+.note p{margin:0}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+footer .wrap{padding-block:20px 40px}
+@media (max-width:520px){ body{font-size:16px} ol.refs{padding-left:1.8em} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="back" href="index.html">← Back to the module</a>
+    <span class="eyebrow">Continuous Variation · Sources</span>
+    <h1>References</h1>
+    <p class="lead">Numbers match the superscript citations in the module. Each entry says what it supports.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="group">
+      <h2>Origins, theory and reviews</h2>
+      <ol class="refs" start="1">
+        <li id="r1"><span class="cite">Job, P. Formation and stability of inorganic complexes in solution. <i>Ann. Chim. (Paris)</i> <b>1928</b>, <i>9</i>, 113–203.</span><span class="use">The original statement of the method of continuous variation (Section 1; spectrophotometric example).</span></li>
+        <li id="r2"><span class="cite">Ostromisslensky, I. Über eine neue, auf dem Massenwirkungsgesetz fussende Analysenmethode einiger binären Verbindungen. <i>Ber. Dtsch. Chem. Ges.</i> <b>1911</b>, <i>44</i>, 268–273.</span><span class="use">An early use of mixing series to find the composition of binary compounds (history; physical-property methods).</span></li>
+        <li id="r3"><span class="cite">Denison, R. B. Contributions to the knowledge of liquid mixtures. <i>Trans. Faraday Soc.</i> <b>1912</b>, <i>8</i>, 20–34.</span><span class="use">Composition of compounds in liquid mixtures from physical properties (history).</span></li>
+        <li id="r4"><span class="cite">Vosburgh, W. C.; Cooper, G. R. Complex ions. I. The identification of complex ions in solution by spectrophotometric measurements. <i>J. Am. Chem. Soc.</i> <b>1941</b>, <i>63</i>, 437–442. <a href="https://doi.org/10.1021/ja01847a025">doi:10.1021/ja01847a025</a></span><span class="use">Extension to systems with several complexes; nickel(II)–ethylenediamine (Sections 1, 3 and limitations).</span></li>
+        <li id="r5"><span class="cite">Renny, J. S.; Tomasevich, L. L.; Tallmadge, E. H.; Collum, D. B. Method of continuous variations: applications of Job plots to the study of molecular associations in organometallic chemistry. <i>Angew. Chem. Int. Ed.</i> <b>2013</b>, <i>52</i>, 11998–12013. <a href="https://doi.org/10.1002/anie.201304157">doi:10.1002/anie.201304157</a></span><span class="use">Modern review: history, theory, ensemble Job plots of aggregates (Sections 1, 3 and Application 3).</span></li>
+        <li id="r6"><span class="cite">Huang, C. Y. Determination of binding stoichiometry by the continuous variation method: the Job plot. <i>Methods Enzymol.</i> <b>1982</b>, <i>87</i>, 509–525. <a href="https://doi.org/10.1016/S0076-6879(82)87029-8">doi:10.1016/S0076-6879(82)87029-8</a></span><span class="use">Theory and use in biochemistry (Sections 1 and 3).</span></li>
+        <li id="r7"><span class="cite">Gil, V. M. S.; Oliveira, N. C. On the use of the method of continuous variations. <i>J. Chem. Educ.</i> <b>1990</b>, <i>67</i>, 473–478. <a href="https://doi.org/10.1021/ed067p473">doi:10.1021/ed067p473</a></span><span class="use">Teaching-oriented treatment of the method and its pitfalls (Section 3).</span></li>
+        <li id="r8"><span class="cite">Likussar, W.; Boltz, D. F. Theory of continuous variations plots and a new method for spectrophotometric determination of extraction and formation constants. <i>Anal. Chem.</i> <b>1971</b>, <i>43</i>, 1265–1272.</span><span class="use">Shape of Job curves and formation constants from them (Section 2; limitations).</span></li>
+        <li id="r9"><span class="cite">Ulatowski, F.; Dąbrowa, K.; Bałakier, T.; Jurczak, J. Recognizing the limited applicability of Job plots in studying host–guest interactions in supramolecular chemistry. <i>J. Org. Chem.</i> <b>2016</b>, <i>81</i>, 1746–1756. <a href="https://doi.org/10.1021/acs.joc.5b02909">doi:10.1021/acs.joc.5b02909</a></span><span class="use">Simulations and case studies showing when Job plots give false stoichiometries (Application 2; limitations).</span></li>
+        <li id="r10"><span class="cite">Hibbert, D. B.; Thordarson, P. The death of the Job plot, transparency, open science and online tools, uncertainty estimation methods and other developments in supramolecular chemistry data analysis. <i>Chem. Commun.</i> <b>2016</b>, <i>52</i>, 12792–12805. <a href="https://doi.org/10.1039/C6CC03888C">doi:10.1039/C6CC03888C</a></span><span class="use">Why titrations with global fitting are preferred for host–guest binding (Application 2; limitations).</span></li>
+      </ol>
+    </section>
+
+    <section class="group">
+      <h2>Literature examples for each type of measurement</h2>
+      <ol class="refs" start="11">
+        <li id="r11"><span class="cite">Thapa, P.; Byrnes, N. K.; Denisenko, A. A.; Foss, F. W., Jr.; Jones, B. J. P.; McDonald, A. D.; Nygren, D. R.; Woodruff, K.; et al. Demonstration of selective single-barium ion detection with dry diazacrown ether naphthalimide turn-on chemosensors. <i>ACS Sens.</i> <b>2021</b>, <i>6</i>, 192–202. Preprint: <a href="https://arxiv.org/abs/2006.09494">arXiv:2006.09494</a></span><span class="use">Fluorescence Job plot: 1:1 binding of Ba<sup>2+</sup> (Section 3, fluorescence).</span></li>
+        <li id="r12"><span class="cite">Liou, L. R.; McNeil, A. J.; Ramirez, A.; Toombes, G. E. S.; Gruver, J. M.; Collum, D. B. Lithium enolates of simple ketones: structure determination using the method of continuous variation. <i>J. Am. Chem. Soc.</i> <b>2008</b>, <i>130</i>, 4859–4868.</span><span class="use"><sup>6</sup>Li NMR Job plots of mixed aggregates (Section 3, NMR; Application 3).</span></li>
+        <li id="r13"><span class="cite">Furlong, W. R.; Rubinski, M. A.; Indralingam, R. The method of continuous variation: a laboratory investigation of the formula of a precipitate. <i>J. Chem. Educ.</i> <b>2013</b>, <i>90</i>, 937–940. <a href="https://doi.org/10.1021/ed3004337">doi:10.1021/ed3004337</a></span><span class="use">Gravimetric Job plots for barium phosphates in neutral, acidic and basic media (Section 3, gravimetric).</span></li>
+        <li id="r14"><span class="cite">Holmquist, D. D.; Randall, J.; Volz, D. L. Determining the mole ratios in a chemical reaction. In <i>Chemistry with Vernier</i>, Experiment 9; Vernier Software &amp; Technology: Beaverton, OR. <a href="https://www.vernier.com/experiments/chem-a/9/">vernier.com/experiments/chem-a/9</a></span><span class="use">Thermometric continuous variation for hypochlorite and thiosulfate (Section 3, thermometric).</span></li>
+        <li id="r15"><span class="cite">Method of transporting metal ions. U.S. Patent 4,180,473, 1979.</span><span class="use">Free Cu<sup>2+</sup> measured with a copper ion-selective electrode in copper–citrate mixtures, analysed by Job’s method as modified by Vosburgh and Cooper (Section 3, potentiometric).</span></li>
+        <li id="r16"><span class="cite">Çalışır, Ü.; Çiçek, B. Determination of crown ether complexation with metal ions by application of Job’s Plot method to conductometry. <i>Balıkesir Üniv. Fen Bilim. Enst. Derg.</i> <b>2019</b>, <i>21</i>, 840–854. <a href="https://doi.org/10.25092/baunfbed.654501">doi:10.25092/baunfbed.654501</a></span><span class="use">Conductometric Job plots for crown ethers with metal ions in 50% acetonitrile–water (Section 3, conductometric).</span></li>
+        <li id="r17"><span class="cite">Mathieson, J. S.; Cooper, G. J. T.; Cronin, L. Quantification of ion binding using electrospray mass spectrometry. <i>Inorg. Chem. Front.</i> <b>2014</b>, <i>1</i>, issue 1. <a href="https://doi.org/10.1039/C3QI00037K">doi:10.1039/C3QI00037K</a></span><span class="use">ESI-MS Job plots, including 12-crown-4 with Li<sup>+</sup> (Section 3, mass spectrometry).</span></li>
+        <li id="r18"><span class="cite">Boland, N. E.; Stone, A. T. Capillary electrophoresis facilitates determination of metal complex stoichiometry by Job’s method of continuous variation. <i>Environ. Chem.</i> <b>2013</b>, <i>10</i>, 409–416. <a href="https://doi.org/10.1071/EN13103">doi:10.1071/EN13103</a></span><span class="use">Ni(II)–DTPA complexes of 1:1, 1:2 and 3:2 resolved by CE (Section 3, capillary electrophoresis).</span></li>
+        <li id="r19"><span class="cite">Davydov, D. R.; Fernando, H.; Halpert, J. R. Variable path length and counter-flow continuous variation methods for the study of the formation of high-affinity complexes by absorbance spectroscopy. An application to the studies of substrate binding in cytochrome P450. <i>Biophys. Chem.</i> <b>2006</b>, <i>123</i>, 95–101. <a href="https://doi.org/10.1016/j.bpc.2006.04.007">doi:10.1016/j.bpc.2006.04.007</a></span><span class="use">Variable-path-length continuous variation for tight protein–ligand binding (Section 3).</span></li>
+      </ol>
+    </section>
+
+    <section class="group">
+      <h2>Applications and problems</h2>
+      <ol class="refs" start="20">
+        <li id="r20"><span class="cite">Fortune, W. B.; Mellon, M. G. Determination of iron with o-phenanthroline: a spectrophotometric study. <i>Ind. Eng. Chem., Anal. Ed.</i> <b>1938</b>, <i>10</i>, 60–64.</span><span class="use">The phenanthroline method for iron (Application 1).</span></li>
+        <li id="r21"><span class="cite">Iacovino, R.; Caso, J. V.; Rapuano, F.; Russo, A.; Isidori, M.; Lavorgna, M.; Malgieri, G.; Isernia, C. Physicochemical characterization and cytotoxic activity evaluation of hydroxymethylferrocene:β-cyclodextrin inclusion complex. <i>Molecules</i> <b>2012</b>, <i>17</i>, 6056–6070. <a href="https://doi.org/10.3390/molecules17056056">doi:10.3390/molecules17056056</a></span><span class="use">1:1 stoichiometry by Job plot; K = 478 M<sup>−1</sup> (NMR) and 541 M<sup>−1</sup> (UV–visible) (Application 2).</span></li>
+        <li id="r22"><span class="cite">Frank, H. S.; Oswalt, R. L. The stability and light absorption of the complex ion FeSCN<sup>++</sup>. <i>J. Am. Chem. Soc.</i> <b>1947</b>, <i>69</i>, 1321–1325. <a href="https://doi.org/10.1021/ja01198a026">doi:10.1021/ja01198a026</a></span><span class="use">Spectrophotometric study of iron(III) thiocyanate (Problem 1).</span></li>
+        <li id="r23"><span class="cite">Tschugaeff (Chugaev), L. Über ein neues, empfindliches Reagens auf Nickel. <i>Ber. Dtsch. Chem. Ges.</i> <b>1905</b>, <i>38</i>, 2520–2522.</span><span class="use">Discovery of the nickel–dimethylglyoxime precipitate (Problem 2).</span></li>
+        <li id="r24"><span class="cite">Smith, P. K.; Krohn, R. I.; Hermanson, G. T.; Mallia, A. K.; Gartner, F. H.; Provenzano, M. D.; Fujimoto, E. K.; Goeke, N. M.; Olson, B. J.; Klenk, D. C. Measurement of protein using bicinchoninic acid. <i>Anal. Biochem.</i> <b>1985</b>, <i>150</i>, 76–85. <a href="https://doi.org/10.1016/0003-2697(85)90442-7">doi:10.1016/0003-2697(85)90442-7</a></span><span class="use">The BCA protein assay (Problem 3).</span></li>
+        <li id="r25"><span class="cite">Brenner, A. J.; Harris, E. D. A quantitative test for copper using bicinchoninic acid. <i>Anal. Biochem.</i> <b>1995</b>, <i>226</i>, 80–84.</span><span class="use">Molar absorptivity of Cu(I)–BCA, 7.7 × 10<sup>3</sup> M<sup>−1</sup> cm<sup>−1</sup> at 562 nm (Problem 3).</span></li>
+        <li id="r26"><span class="cite">Xiao, Z.; Brose, J.; Schimo, S.; Ackland, S. M.; La Fontaine, S.; Wedd, A. G. Unification of the copper(I) binding affinities of the metallo-chaperones Atx1, Atox1, and related proteins: detection probes and affinity standards. <i>J. Biol. Chem.</i> <b>2011</b>, <i>286</i>, 11047–11055.</span><span class="use">log β<sub>2</sub> = 17.2 for [Cu(BCA)<sub>2</sub>]<sup>3−</sup> (Problem 3).</span></li>
+        <li id="r27"><span class="cite">Harris, D. C.; Lucy, C. A. <i>Quantitative Chemical Analysis</i>, 10th ed.; W. H. Freeman: New York, 2020.</span><span class="use">Molar absorptivity of [Fe(phen)<sub>3</sub>]<sup>2+</sup> (1.11 × 10<sup>4</sup> M<sup>−1</sup> cm<sup>−1</sup>) and its formation constant (Application 1); background on spectrophotometric complex studies.</span></li>
+      </ol>
+    </section>
+
+    <div class="note">
+      <h2>How the plots and problem data were made</h2>
+      <p>Every curve is calculated from the equilibrium <i>m</i> M + <i>n</i> L ⇌ M<sub><i>m</i></sub>L<sub><i>n</i></sub> with the mass balances in Section 2, solved numerically for each mixture. Constants used: Fe(II)–phen, log β<sub>3</sub> = 21.3 and ε<sub>510</sub> = 1.11 × 10<sup>4</sup>; hydroxymethylferrocene–β-CD, K = 478 M<sup>−1</sup>; Fe(III)–SCN<sup>−</sup>, K = 1.4 × 10<sup>2</sup> M<sup>−1</sup> and ε<sub>447</sub> = 4.7 × 10<sup>3</sup>, values of the size reported for this ion; Ni(Hdmg)<sub>2</sub>, 288.9 g mol<sup>−1</sup> with complete precipitation; Cu(I)–BCA, log β<sub>2</sub> = 17.2 and ε<sub>562</sub> = 7.7 × 10<sup>3</sup>. Small random errors (a few tenths of a milligram, or ±0.003 absorbance) were added to the problem data.</p>
+      <p>Check DOIs against your library before assigning them; a few older entries have no DOI.</p>
+    </div>
+  </div>
+</main>
+
+<footer><div class="wrap"><a href="index.html">Back to the module</a> · <a href="https://sunitathyagarajan.github.io/">More modules</a></div></footer>
+</body>
+</html>

@@ -1,0 +1,1331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Continuous Variation</title>
+<meta name="description" content="Job's method of continuous variation for chemistry students: how a mixing series reveals the formula of a complex, every kind of measurement it can use with examples from the literature, why the total volume must stay constant, three applications with plots, the method's limitations, and three literature-based problems with worked solutions.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236a48ad'/%3E%3Cpath d='M4 26 L20 8 L28 26' fill='none' stroke='white' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+/* Same tokens, type scale and font sizes as the Electromagnetic Radiation and glucose modules, so the pages read as one site.
+   The accent here is violet; every other color plays the same role it does on the other pages. */
+:root{
+  --bg:#f3f6f7; --surface:#ffffff; --surface-2:#e8eff2; --ink:#13222c; --muted:#52626d; --line:#d0dbe0; --grid:#e4ebee;
+  --accent:#6a48ad; --accent-soft:#e8e1f6; --data:#1d6a94; --data-soft:#d8e9f3;
+  --med:#0b7869; --med-soft:#d4efe9; --pink:#c2185b; --pink-soft:#fbe3ed;
+  --good:#2b7a30; --good-soft:#dff1e0; --bad:#c42727; --bad-soft:#fae1e1; --warn:#8a5a00; --warn-soft:#fbefd5;
+  --f-body:Calibri,Carlito,"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --f-num:var(--f-body);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e161b; --surface:#152129; --surface-2:#1c2b34; --ink:#e4edf1; --muted:#9caeb9; --line:#2b3c46; --grid:#1f2f38;
+  --accent:#b597ea; --accent-soft:#2a2240; --data:#62b3df; --data-soft:#16303f;
+  --med:#4fc6b3; --med-soft:#123630; --pink:#f0679a; --pink-soft:#3b1c2a;
+  --good:#6cc070; --good-soft:#173219; --bad:#f06262; --bad-soft:#3a1717; --warn:#e3b341; --warn-soft:#33270f; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e161b; --surface:#152129; --surface-2:#1c2b34; --ink:#e4edf1; --muted:#9caeb9; --line:#2b3c46; --grid:#1f2f38;
+  --accent:#b597ea; --accent-soft:#2a2240; --data:#62b3df; --data-soft:#16303f;
+  --med:#4fc6b3; --med-soft:#123630; --pink:#f0679a; --pink-soft:#3b1c2a;
+  --good:#6cc070; --good-soft:#173219; --bad:#f06262; --bad-soft:#3a1717; --warn:#e3b341; --warn-soft:#33270f; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
+[hidden]{display:none!important}
+a{color:var(--data);overflow-wrap:anywhere}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+h1,h2,h3,h4{line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,3.6vw,2.1rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.2rem;font-weight:700}
+h4{font-size:1.02rem;font-weight:700}
+p{margin:0}
+sup,sub{line-height:0}
+.wrap{max-width:1000px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.prose{display:grid;gap:.8em}
+p.prose{display:block}
+.muted{color:var(--muted)}
+.mono,.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-body);font-size:calc(.78rem + 6px);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+sup.cite a{text-decoration:none;font-size:.72em;font-weight:600;color:var(--accent);padding:0 1px}
+sup.cite a:hover{text-decoration:underline}
+
+/* header */
+header{background:var(--surface);border-bottom:1px solid var(--line)}
+header .wrap{padding-block:36px 30px;display:grid;gap:12px}
+.back{font-weight:600;text-decoration:none;font-size:.95rem}
+.back:hover{text-decoration:underline}
+.subtitle{font-size:clamp(1.25rem,3vw,1.6rem);font-weight:700;color:var(--accent);margin-top:-4px}
+.lead{font-size:1.15rem;color:var(--muted)}
+.reading{display:grid;grid-template-columns:minmax(0,560px) minmax(220px,1fr);grid-template-rows:auto auto;gap:10px 32px;margin-top:4px}
+.reading > *{min-width:0}
+.rtext,.bfig{display:grid;grid-row:span 2;grid-template-rows:subgrid;gap:10px;margin:0}
+.reading .eqblock{align-self:center;justify-self:center;display:flex;flex-direction:column;align-items:center;gap:14px;min-width:0}
+.reading .big{font-family:var(--f-num);font-size:clamp(1.05rem,2.6vw,1.3rem);font-weight:600;text-align:center}
+.reading .terms{display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 10px;margin:0;font-size:.92rem;line-height:1.4;text-align:left;max-width:340px}
+.reading .terms > div{display:contents}
+.reading .terms dt{font-weight:600;text-align:right;min-width:1.2em}
+.reading .terms dd{margin:0;color:var(--muted)}
+.reading .cap,.bfig figcaption{color:var(--muted);font-size:.92rem;line-height:1.5;text-align:left;align-self:start}
+@media (max-width:760px){.reading{grid-template-columns:minmax(0,1fr)} .bfig{width:100%;max-width:560px}}
+.bfig svg{width:100%;height:auto;display:block}
+
+/* section index */
+nav.index{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.index .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:thin;align-items:center}
+nav.index a{flex:none;text-decoration:none;color:var(--muted);font-weight:600;font-size:.92rem;padding:6px 12px;border-radius:999px}
+nav.index a:hover{background:var(--surface-2);color:var(--ink)}
+nav.index .sep{flex:none;width:1px;height:20px;background:var(--line);margin:0 4px}
+
+section.block{padding-block:52px 8px;scroll-margin-top:60px}
+section.block > .wrap{display:grid;gap:22px}
+.sechead{display:grid;gap:8px;border-left:4px solid var(--accent);padding-left:14px}
+.subhead{display:grid;gap:6px;margin-top:14px}
+.subhead .klabel{color:var(--accent)}
+.partdiv{border-top:1px solid var(--line);margin-top:10px}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:14px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:10px;align-content:start;min-width:0}
+.card > *{min-width:0}
+.card ul,.card ol{margin:0;padding-left:1.2em;display:grid;gap:5px}
+.card .why{font-size:.93rem;border-top:1px solid var(--line);padding-top:8px;color:var(--muted)}
+.card .why b{color:var(--ink)}
+.card.top{border-top:4px solid var(--rc,var(--accent))}
+.card.wide{grid-column:1/-1}
+.klabel{font-size:calc(.76rem + 4px);letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--rc,var(--accent))}
+.example{background:var(--surface-2);border-radius:8px;padding:10px 12px;font-size:.95rem}
+.example b{color:var(--ink)}
+.formula .katex-display{margin:.15em 0}
+.formula .katex-display>.katex{text-align:left;font-size:1.2em}
+.callout{background:var(--accent-soft);border-radius:10px;padding:12px 16px;display:grid;gap:6px}
+.callout b{color:var(--ink)}
+.warnbox{background:var(--warn-soft);border-radius:10px;padding:12px 16px;display:grid;gap:6px}
+
+/* equations */
+.eqn{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--rc,var(--accent));border-radius:10px;padding:14px 18px;display:grid;gap:8px;min-width:0}
+.eqn > *{min-width:0}
+.eqn .katex-display{margin:.25em 0}
+.eqn .katex-display>.katex{text-align:left}
+.eqn .note{font-size:.93rem;color:var(--muted)}
+.eqn .note b{color:var(--ink)}
+.eqrow{display:grid;grid-template-columns:minmax(0,1fr);gap:2px;border-top:1px dashed var(--line);padding-top:6px}
+.eqrow:first-of-type{border-top:none;padding-top:0}
+
+/* bench panels: every interactive */
+.bench{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:16px;min-width:0}
+.bench > *{min-width:0}
+.bench-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+.bench-grid > *{min-width:0}
+@media (max-width:820px){.bench-grid{grid-template-columns:minmax(0,1fr)}}
+.bhead{display:grid;gap:4px}
+.bhead .tagi{font-size:calc(.76rem + 4px);letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--accent)}
+.controls{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:end}
+.side{display:grid;gap:12px}
+.ctl{display:grid;gap:4px;font-size:.88rem;color:var(--muted);font-weight:600;min-width:0}
+.ctl output{font-family:var(--f-num);color:var(--ink);font-weight:600}
+.ctl.slider{min-width:min(100%,200px);flex:1 1 200px}
+input[type=range]{width:100%;accent-color:var(--accent)}
+button{font:inherit;font-weight:600;font-size:.93rem;cursor:pointer;border-radius:8px;padding:8px 14px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink)}
+button:hover{border-color:var(--muted)}
+.seg{display:inline-flex;flex-wrap:wrap;gap:2px;border:1px solid var(--line);border-radius:12px;padding:3px;background:var(--surface-2);justify-self:start;max-width:100%}
+.seg button{border:none;background:none;border-radius:9px;padding:6px 12px;font-size:.88rem;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.statgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.stat{background:var(--surface-2);border-radius:8px;padding:8px 10px;min-width:0}
+.stat .k{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.02em}
+.stat .v{font-family:var(--f-num);font-size:1.05rem;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.stat.wide{grid-column:1/-1}
+.stat.bad .v{color:var(--bad)}
+.stat.good .v{color:var(--good)}
+.note{font-size:.9rem;color:var(--muted)}
+.hint{font-size:.92rem;border-left:3px solid var(--data);padding:4px 0 4px 12px;color:var(--muted)}
+.hint b{color:var(--ink)}
+.steps{margin:0;padding-left:1.3em;display:grid;gap:6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.88rem;color:var(--muted)}
+.legend i{display:inline-block;width:18px;height:0;border-top:3px solid var(--c);vertical-align:4px;margin-right:6px}
+.legend i.dash{border-top-style:dashed}
+.legend i.dot{width:10px;height:10px;border:none;border-radius:50%;background:var(--c);vertical-align:0}
+
+/* figures (SVG) */
+.plot{width:100%;height:auto;display:block;user-select:none;-webkit-user-select:none;overflow:hidden}
+.plot text{font-family:var(--f-body);font-size:14px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.plot .t-ink{fill:var(--ink);font-weight:600}
+.plot .t-acc{fill:var(--accent);font-weight:700}
+.plot .t-sm{font-size:12px}
+.plot .axis{stroke:var(--muted);stroke-width:1;fill:none}
+.plot .gridl{stroke:var(--grid);stroke-width:1}
+.plot .halo{stroke:var(--surface);stroke-width:4px;paint-order:stroke;stroke-linejoin:round}
+figure.fig{margin:0;display:grid;gap:6px}
+figure.fig figcaption{font-size:.86rem;color:var(--muted)}
+
+/* tables */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.tbl table{border-collapse:collapse;width:100%;font-size:.92rem}
+.tbl th,.tbl td{padding:7px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl th{background:var(--surface-2);font-weight:700}
+.tbl td.v,.tbl th.v{font-family:var(--f-num);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.tbl .gridtbl{border-collapse:separate;border-spacing:0}
+.tbl .gridtbl th,.tbl .gridtbl td{border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 12px}
+.tbl .gridtbl tr > :last-child{border-right:0}
+.tbl .gridtbl tbody tr:last-child td{border-bottom:0}
+.tbl .gridtbl thead th{background:var(--surface-2);border-bottom:2px solid var(--muted);vertical-align:bottom}
+.tbl .gridtbl tbody tr:nth-child(odd) td{background:var(--surface)}
+.tbl .gridtbl tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--surface-2) 55%,var(--surface))}
+.tbl .methtbl td:first-child{font-weight:700}
+.methtbl{min-width:860px}
+.swipehint{display:none;font-size:.82rem;color:var(--muted)}
+@media (max-width:920px){ .swipehint.tblw{display:block} }
+.datatbl{min-width:0}
+.datatbl td,.datatbl th{text-align:center!important}
+
+/* problems */
+.problem{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:18px 20px;display:grid;gap:14px;min-width:0}
+.problem > *{min-width:0}
+.problem .src{font-size:.9rem;color:var(--muted)}
+.problem ol.q{margin:0;padding-left:1.4em;display:grid;gap:6px}
+details.sol{background:var(--surface-2);border-radius:10px;padding:10px 16px}
+details.sol summary{cursor:pointer;font-weight:700;color:var(--accent)}
+details.sol[open] summary{margin-bottom:10px}
+details.sol .solbody{display:grid;gap:10px}
+details.sol ol{margin:0;padding-left:1.4em;display:grid;gap:8px}
+
+.src-line{font-size:.86rem;color:var(--muted)}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;margin-top:48px}
+footer .wrap{padding-block:20px 48px}
+@media (max-width:520px){
+  body{font-size:16px} .bench{padding:14px} .card{padding:14px} .eqn{padding:12px 14px} .problem{padding:14px}
+  .eqn .katex-display>.katex,.example .katex-display>.katex{font-size:1em}
+  .formula .katex-display>.katex{font-size:1.05em}
+  .stat .v{font-size:1rem}
+  .lead{font-size:1.05rem}
+}
+/* Equations: KaTeX lays them out, but every letter, digit and symbol is set in Calibri like the rest of the page.
+   Only the pieces KaTeX draws itself (fraction bars, roots, reaction arrows, tall brackets) keep KaTeX's shapes. */
+.katex{font-size:1.1em;font-family:var(--f-body)}
+.katex .mathnormal,.katex .mathit{font-family:var(--f-body);font-style:italic}
+.katex .mord,.katex .mbin,.katex .mrel,.katex .mopen,.katex .mclose,.katex .mpunct,.katex .minner,.katex .mop,
+.katex .mathrm,.katex .textrm,.katex .mainrm,.katex .mathsf,.katex .textsf{font-family:var(--f-body)}
+.katex .mathbf,.katex .textbf{font-family:var(--f-body);font-weight:700}
+.katex-display{margin:.5em 0;overflow-x:auto;overflow-y:hidden;padding:2px 0}
+@media print{ nav.index{display:none} details.sol{display:block} .bench{break-inside:avoid} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="back" href="https://sunitathyagarajan.github.io/">← More modules</a>
+    <span class="eyebrow">Analytical &amp; coordination chemistry · Stoichiometry in solution</span>
+    <h1>Where the Curve Peaks, the Formula Hides</h1>
+    <p class="subtitle">Job’s method of continuous variation</p>
+    <p class="lead">How many ligands does one metal ion hold? How many cyclodextrin rings wrap one drug molecule? Often you cannot pull the complex out of solution to weigh it. Instead, mix the two partners in every proportion while keeping the total amount fixed, measure one property of each mixture, and look for the mixture that makes the most product. Its composition is the formula.</p>
+    <div class="reading">
+      <figure class="bfig">
+        <svg class="plot" id="heroTubes" viewBox="0 0 560 300" role="img" aria-label="Thirteen test tubes in a row. Each holds the same total volume, but the fraction of ligand rises from 0 on the left to 1 on the right. The violet color of the complex is faint at both ends and darkest in the ninth tube, where two-thirds of the mixture is ligand. A curve above the tubes traces the color intensity and peaks at that tube, labelled M L two."></svg>
+        <figcaption>Thirteen mixtures, same total volume, same total moles. Color comes only from the complex, so the darkest tube is the one where neither partner is left over. Here it sits at two-thirds ligand: two L for every M, so the complex is ML<sub>2</sub>.</figcaption>
+      </figure>
+      <div class="rtext">
+        <div class="eqblock">
+          <span class="big">\(x_{\text{L,max}} = \dfrac{n}{m+n}\)</span>
+          <dl class="terms" aria-label="What each symbol means">
+            <div><dt>\(x_{\text{L}}\)</dt><dd>mole fraction of ligand in the mixture, \(n_{\text{L}}/(n_{\text{M}}+n_{\text{L}})\)</dd></div>
+            <div><dt>\(x_{\text{L,max}}\)</dt><dd>mole fraction at which the signal is largest</dd></div>
+            <div><dt>\(m\)</dt><dd>number of metal (M) units in the complex \(\mathrm{M}_m\mathrm{L}_n\)</dd></div>
+            <div><dt>\(n\)</dt><dd>number of ligand (L) units in the complex</dd></div>
+          </dl>
+        </div>
+        <span class="cap">Read the peak position, invert the equation, and you have the combining ratio \(n/m\). A peak at 0.50 means 1:1, at 0.67 means 1:2, at 0.75 means 1:3.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="index" aria-label="Sections">
+  <div class="wrap">
+    <a href="#intro">1 · Introduction</a>
+    <a href="#formula">2 · Finding the formula</a>
+    <a href="#measure">3 · Measurements</a>
+    <a href="#volume">4 · Constant volume</a>
+    <a href="#apps">5 · Applications &amp; limits</a>
+    <a href="#problems">6 · Problems</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="references.html">References</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ======================================================= 1. INTRODUCTION ======================================================= -->
+<section class="block" id="intro">
+  <div class="wrap">
+    <div class="sechead">
+      <span class="eyebrow">Section 1</span>
+      <h2>Introduction to the method of continuous variation</h2>
+      <p class="prose muted">The method of continuous variation, also called <b>Job’s method</b> or the <b>Job plot</b>, finds the combining ratio of two species that react or bind in solution. It is named after the French chemist Paul Job, who set it out in 1928 in a long study of how inorganic complexes form in solution.<sup class="cite"><a href="references.html#r1">1</a></sup> Similar ideas had appeared earlier in studies of liquid mixtures by Ostromisslensky (1911) and Denison (1912).<sup class="cite"><a href="references.html#r2">2,3</a></sup> In 1941 Vosburgh and Cooper showed how to use it when more than one complex can form,<sup class="cite"><a href="references.html#r4">4</a></sup> and it is still used across inorganic, organic, organometallic, supramolecular and biological chemistry.<sup class="cite"><a href="references.html#r5">5,6</a></sup></p>
+    </div>
+
+    <div class="cards">
+      <div class="card top">
+        <span class="klabel">The idea in one sentence</span>
+        <p>Keep the <b>total</b> number of moles of the two partners constant, vary the <b>proportion</b> continuously from all M to all L, and plot a property that depends on how much product formed. The product is greatest where the reactants are mixed in exactly the ratio in which they combine.</p>
+      </div>
+      <div class="card top">
+        <span class="klabel">An everyday analogy</span>
+        <p>You have 12 slices in total, some bread and some cheese, and each sandwich needs 2 bread + 1 cheese. With 6 bread + 6 cheese you make 3 sandwiches; with 10 bread + 2 cheese you make 2. The most sandwiches (4) come from 8 bread + 4 cheese, a cheese fraction of exactly 1/3. The “peak” gives the recipe.</p>
+      </div>
+      <div class="card top">
+        <span class="klabel">Why it works</span>
+        <p>Away from the ideal ratio, one reactant runs out first and the other is left over, wasted. Only at the stoichiometric ratio are both used up together, so the amount of product, and any signal proportional to it, reaches its maximum.</p>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h3>The experiment, step by step</h3>
+        <ol class="steps">
+          <li>Make <b>equimolar</b> stock solutions of M and L (same concentration \(c_0\)), in the same buffer, solvent and ionic strength.</li>
+          <li>Mix them in a series of proportions, for example \(V_{\text{M}} = 10, 9, 8, \dots, 0\) mL with \(V_{\text{L}} = 0, 1, 2, \dots, 10\) mL, so every mixture has the <b>same total volume</b> (10.00 mL).</li>
+          <li>Let each mixture reach equilibrium at constant temperature.</li>
+          <li>Measure a property that changes in proportion to the amount of complex: absorbance, fluorescence, an NMR shift, heat released, mass of precipitate, and so on (Section 3).</li>
+          <li>Subtract what the unreacted M and L would contribute on their own.</li>
+          <li>Plot the corrected signal against the mole fraction \(x_{\text{L}}\). Draw straight lines through the points near each end; where they meet (or where the curve peaks) gives the ratio.</li>
+        </ol>
+      </div>
+      <div class="eqn">
+        <h3>Mole fraction from volumes</h3>
+        <p class="note">With equimolar stocks and a fixed total volume, mole fraction is just volume fraction:</p>
+        <div class="formula">\[ x_{\text{L}} = \frac{n_{\text{L}}}{n_{\text{M}} + n_{\text{L}}} = \frac{c_0 V_{\text{L}}}{c_0 V_{\text{M}} + c_0 V_{\text{L}}} = \frac{V_{\text{L}}}{V_{\text{T}}} \]</div>
+        <div class="formula">\[ x_{\text{M}} = 1 - x_{\text{L}} \]</div>
+        <p class="note">For a 10.00 mL series, a mixture of 3.00 mL M + 7.00 mL L has \(x_{\text{L}} = 0.700\).</p>
+      </div>
+    </div>
+
+    <div class="bench" id="simA">
+      <div class="bhead">
+        <span class="tagi">Interactive · Job plot simulator</span>
+        <h3>Change the formula and the binding strength, and watch where the peak lands</h3>
+        <p class="note">The curve is calculated exactly from the equilibrium \(m\,\mathrm{M} + n\,\mathrm{L} \rightleftharpoons \mathrm{M}_m\mathrm{L}_n\). The dashed triangle is what you would see if the reaction went to completion. Dots are the 11 mixtures of a 10-point series.</p>
+      </div>
+      <div class="bench-grid">
+        <figure class="fig">
+          <svg class="plot" id="plotA" role="img" aria-label="Job plot: relative amount of complex against mole fraction of ligand, with the complete-reaction triangle dashed and the equilibrium curve solid; a vertical line marks the peak."></svg>
+          <div class="legend"><span><i style="--c:var(--accent)"></i>equilibrium curve</span><span><i class="dash" style="--c:var(--muted)"></i>complete reaction</span><span><i class="dot" style="--c:var(--accent)"></i>the 11 mixtures</span></div>
+        </figure>
+        <div class="side">
+          <div class="ctl">Formula of the complex
+            <div class="seg" id="segA" role="group" aria-label="Formula of the complex">
+              <button type="button" data-m="1" data-n="1">ML</button>
+              <button type="button" data-m="1" data-n="2" aria-pressed="true">ML<sub>2</sub></button>
+              <button type="button" data-m="1" data-n="3">ML<sub>3</sub></button>
+              <button type="button" data-m="2" data-n="1">M<sub>2</sub>L</button>
+              <button type="button" data-m="2" data-n="3">M<sub>2</sub>L<sub>3</sub></button>
+            </div>
+          </div>
+          <label class="ctl slider" for="sA"><span>Binding strength at this concentration, \(\log(\beta c_{\text{T}}^{\,m+n-1})\) = <output id="sAo"></output></span>
+            <input type="range" id="sA" min="-1" max="5" step="0.1" value="3"></label>
+          <div class="statgrid">
+            <div class="stat"><div class="k">Peak at \(x_{\text{L}}\)</div><div class="v" id="aPk"></div></div>
+            <div class="stat"><div class="k">Ratio L : M</div><div class="v" id="aRat"></div></div>
+            <div class="stat"><div class="k">Formula read from the peak</div><div class="v" id="aF"></div></div>
+            <div class="stat"><div class="k">Complex formed at the peak</div><div class="v" id="aPct"></div></div>
+            <div class="stat wide"><div class="k">Equivalent \(\beta\) at \(c_{\text{T}}\) = 1.00 mM</div><div class="v" id="aBeta"></div></div>
+          </div>
+          <p class="hint">Slide the strength down. The triangle rounds off and the end lines get harder to extrapolate, <b>but the peak stays put</b> as long as only one complex forms. Section 2 proves why.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= 2. FORMULA ======================================================= -->
+<section class="block" id="formula">
+  <div class="wrap">
+    <div class="sechead">
+      <span class="eyebrow">Section 2</span>
+      <h2>How is the formula of a compound determined, and why is the method useful?</h2>
+      <p class="prose muted">A Job plot gives the <b>combining ratio</b> of the two partners, \(n/m\). Turning that ratio into a formula takes one short derivation, a correction for anything that is not the complex, and, when it matters, a second measurement that tells you the size of the molecule.</p>
+    </div>
+
+    <div class="two">
+      <div class="eqn">
+        <h3>Where the peak must be: the derivation</h3>
+        <div class="eqrow">
+          <p class="note">Let one complex form, with an overall formation constant \(\beta\):</p>
+          <div class="formula">\[ m\,\mathrm{M} + n\,\mathrm{L} \rightleftharpoons \mathrm{M}_m\mathrm{L}_n \qquad \beta = \frac{[\mathrm{M}_m\mathrm{L}_n]}{[\mathrm{M}]^{m}\,[\mathrm{L}]^{n}} \]</div>
+        </div>
+        <div class="eqrow">
+          <p class="note">Write \(C = [\mathrm{M}_m\mathrm{L}_n]\) and \(x = x_{\text{M}}\). Mass balance at constant total concentration \(c_{\text{T}}\):</p>
+          <div class="formula">\[ [\mathrm{M}] = x c_{\text{T}} - mC \qquad [\mathrm{L}] = (1-x)c_{\text{T}} - nC \]</div>
+        </div>
+        <div class="eqrow">
+          <p class="note">Take logarithms and differentiate with respect to \(x\):</p>
+          <div class="formula">\[ 0 = \frac{1}{C}\frac{dC}{dx} - \frac{m}{[\mathrm{M}]}\left(c_{\text{T}} - m\frac{dC}{dx}\right) - \frac{n}{[\mathrm{L}]}\left(-c_{\text{T}} - n\frac{dC}{dx}\right) \]</div>
+        </div>
+        <div class="eqrow">
+          <p class="note">At the maximum \(dC/dx = 0\), so \(m/[\mathrm{M}] = n/[\mathrm{L}]\). Substituting the mass balances, the \(C\) terms cancel:</p>
+          <div class="formula">\[ m(1-x_{\max}) = n\,x_{\max} \quad\Longrightarrow\quad x_{\text{M,max}} = \frac{m}{m+n}, \qquad x_{\text{L,max}} = \frac{n}{m+n} \]</div>
+          <p class="note"><b>\(\beta\) and \(c_{\text{T}}\) have dropped out.</b> For a single complex, the peak position depends only on the formula, never on how strong the binding is or what total concentration you chose.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Reading the formula off the plot</h3>
+        <div class="tbl"><table class="gridtbl datatbl">
+          <thead><tr><th>\(x_{\text{L}}\) at peak</th><th>\(x_{\text{M}}\) at peak</th><th>L : M</th><th>Formula</th></tr></thead>
+          <tbody>
+            <tr><td class="v">0.333</td><td class="v">0.667</td><td>1 : 2</td><td>M<sub>2</sub>L</td></tr>
+            <tr><td class="v">0.500</td><td class="v">0.500</td><td>1 : 1</td><td>ML (or M<sub>2</sub>L<sub>2</sub>, …)</td></tr>
+            <tr><td class="v">0.600</td><td class="v">0.400</td><td>3 : 2</td><td>M<sub>2</sub>L<sub>3</sub></td></tr>
+            <tr><td class="v">0.667</td><td class="v">0.333</td><td>2 : 1</td><td>ML<sub>2</sub></td></tr>
+            <tr><td class="v">0.750</td><td class="v">0.250</td><td>3 : 1</td><td>ML<sub>3</sub></td></tr>
+            <tr><td class="v">0.800</td><td class="v">0.200</td><td>4 : 1</td><td>ML<sub>4</sub></td></tr>
+            <tr><td class="v">0.857</td><td class="v">0.143</td><td>6 : 1</td><td>ML<sub>6</sub></td></tr>
+          </tbody>
+        </table></div>
+        <div class="formula">\[ \frac{n}{m} = \frac{x_{\text{L,max}}}{1 - x_{\text{L,max}}} \]</div>
+        <p class="why">Peaks for high ratios crowd together near \(x_{\text{L}} = 1\) (0.80, 0.83, 0.857), so distinguishing ML<sub>4</sub> from ML<sub>5</sub> or ML<sub>6</sub> needs closely spaced points and a precise signal.</p>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="eqn">
+        <h3>Step 1 · Correct the signal</h3>
+        <p class="note">If M or L also contributes (for example, both absorb a little at the chosen wavelength), subtract what they would give with no reaction. For absorbance with path length \(b\):</p>
+        <div class="formula">\[ Y = A_{\text{obs}} - b\left(\varepsilon_{\text{M}} c_{\text{M}} + \varepsilon_{\text{L}} c_{\text{L}}\right) = b\left(\varepsilon_{\text{C}} - m\varepsilon_{\text{M}} - n\varepsilon_{\text{L}}\right)[\mathrm{M}_m\mathrm{L}_n] \]</div>
+        <p class="note">The corrected signal \(Y\) is directly proportional to the amount of complex, which is what the derivation needs. The same logic works for any additive property (Section 3).</p>
+      </div>
+      <div class="eqn">
+        <h3>Step 2 · Extract a formation constant (bonus)</h3>
+        <p class="note">The straight end lines show what complete reaction would give. They meet at \(A_{\text{ext}}\); the measured peak \(A_{\max}\) falls short because some complex dissociates. The fraction dissociated is</p>
+        <div class="formula">\[ \alpha = \frac{A_{\text{ext}} - A_{\max}}{A_{\text{ext}}} \]</div>
+        <p class="note">For \(\mathrm{ML}_n\), with \(c = c_{\text{T}}/(1+n)\) the concentration of complex if formation were complete:</p>
+        <div class="formula">\[ \beta_n = \frac{1-\alpha}{n^{n}\,\alpha^{\,n+1}\,c^{\,n}} \]</div>
+      </div>
+    </div>
+
+    <div class="card wide">
+      <h3>Worked example</h3>
+      <p>A metal M and ligand L are mixed in a 10.00 mL continuous-variation series with \(c_{\text{T}} = 1.00\) mM and a 1.00 cm cell. After correction, the end lines meet at \(x_{\text{L}} = 0.667\) with \(A_{\text{ext}} = 0.600\); the measured absorbance there is \(A_{\max} = 0.540\).</p>
+      <div class="formula">\[ \frac{n}{m} = \frac{0.667}{1-0.667} = 2.00 \quad\Longrightarrow\quad \mathrm{ML_2} \]</div>
+      <div class="formula">\[ c = \frac{c_{\text{T}}}{1+n} = \frac{1.00 \times 10^{-3}\ \text{M}}{3} = 3.33 \times 10^{-4}\ \text{M} \qquad \varepsilon_{\text{C}} = \frac{A_{\text{ext}}}{bc} = \frac{0.600}{(1.00\ \text{cm})(3.33 \times 10^{-4}\ \text{M})} = 1.80 \times 10^{3}\ \text{M}^{-1}\,\text{cm}^{-1} \]</div>
+      <div class="formula">\[ \alpha = \frac{0.600 - 0.540}{0.600} = 0.100 \qquad \beta_2 = \frac{1 - 0.100}{2^{2}\,(0.100)^{3}\,(3.33 \times 10^{-4})^{2}} = 2.0 \times 10^{9}\ \text{M}^{-2} \]</div>
+      <p class="why">One series of mixtures gives the formula, the molar absorptivity of a complex you never isolated, and an estimate of its stability.</p>
+    </div>
+
+    <div class="two">
+      <div class="callout">
+        <h3>From ratio to molecular formula</h3>
+        <p>The Job plot fixes the <b>ratio</b> \(n/m\). It cannot tell ML from M<sub>2</sub>L<sub>2</sub>, because both peak at 0.50. To write a molecular formula:</p>
+        <ol class="steps">
+          <li><b>Ratio</b> from the peak (Job plot).</li>
+          <li><b>Charge</b> from the charges of M and L, so the complex balances: Fe<sup>2+</sup> + 3 phen gives [Fe(phen)<sub>3</sub>]<sup>2+</sup>.</li>
+          <li><b>Size</b> (degree of aggregation) from a second method when it is in doubt: mass spectrometry, a colligative property, diffusion NMR, or an “ensemble” Job plot that counts subunits (Application 3).</li>
+          <li><b>Chemical sense</b>: coordination number, denticity and geometry should be consistent with the formula.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Why the method is so useful</h3>
+        <ul>
+          <li><b>No isolation needed.</b> It works on species that exist only in solution and would fall apart if you tried to crystallize them.</li>
+          <li><b>Fast and cheap.</b> About ten mixtures and one instrument you probably already have.</li>
+          <li><b>Any additive signal will do</b>: absorbance, fluorescence, NMR, heat, mass, conductance, potential, MS intensity (Section 3).</li>
+          <li><b>More than a formula.</b> The same data give the complex’s molar absorptivity and an estimate of its formation constant.</li>
+          <li><b>Sets up other experiments.</b> Knowing the ratio tells you how much reagent an assay needs (Application 1), which model to fit in a binding study, and which species to write in a mechanism.</li>
+          <li><b>Teaches stoichiometry visually</b>: limiting reagent, excess reagent and equilibrium all show up in one plot.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= 3. MEASUREMENTS ======================================================= -->
+<section class="block" id="measure">
+  <div class="wrap">
+    <div class="sechead">
+      <span class="eyebrow">Section 3</span>
+      <h2>Types of measurement</h2>
+      <p class="prose muted">Job’s method does not care how you detect the complex, only that the corrected signal is <b>proportional to the amount of complex</b> and adds up linearly from each species. That opens the door to almost any physical measurement. Each card gives the principle, the quantity you plot, and an example from the literature.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card top" style="--rc:var(--accent)">
+        <span class="klabel">1 · Spectrophotometric (UV–visible)</span>
+        <p>The classic choice. The complex absorbs at a wavelength where M and L absorb little (or a known amount). Beer’s law makes absorbance linear in concentration.</p>
+        <div class="formula">\[ Y = A_{\text{obs}} - b(\varepsilon_{\text{M}}c_{\text{M}} + \varepsilon_{\text{L}}c_{\text{L}}) \]</div>
+        <div class="example"><b>Literature:</b> Job used absorbance to study ion association in his 1928 work.<sup class="cite"><a href="references.html#r1">1</a></sup> Vosburgh and Cooper (1941) ran Job series for nickel(II) with ethylenediamine at several wavelengths; because each complex absorbs differently, different wavelengths revealed [Ni(en)]<sup>2+</sup>, [Ni(en)<sub>2</sub>]<sup>2+</sup> and [Ni(en)<sub>3</sub>]<sup>2+</sup>.<sup class="cite"><a href="references.html#r4">4</a></sup></div>
+        <p class="why"><b>Watch for:</b> deviations from Beer’s law, overlapping spectra, and reactant absorbance that must be subtracted.</p>
+      </div>
+
+      <div class="card top" style="--rc:var(--pink)">
+        <span class="klabel">2 · Fluorescence</span>
+        <p>Many sensors switch their emission on or off when they bind a target. Emission intensity is proportional to concentration in dilute solution, and fluorescence is sensitive enough to work at micromolar levels.</p>
+        <div class="formula">\[ Y = F_{\text{obs}} - (F_{\text{M}} + F_{\text{L}}) \]</div>
+        <div class="example"><b>Literature:</b> Thapa et al. (2021) built diaza-crown ether naphthalimide “turn-on” sensors for single barium ions (for neutrinoless double-beta-decay experiments). A fluorescence Job plot showed that each sensor binds one Ba<sup>2+</sup> (1:1).<sup class="cite"><a href="references.html#r11">11</a></sup></div>
+        <p class="why"><b>Watch for:</b> inner-filter effects at higher absorbance, quenching, and self-association of the dye.</p>
+      </div>
+
+      <div class="card top" style="--rc:var(--med)">
+        <span class="klabel">3 · NMR spectroscopy</span>
+        <p>In fast exchange, an observed chemical shift is an average of free and bound forms. The shift change \(\Delta\delta\) is proportional to the <i>fraction</i> bound, so multiply it by the mole fraction of the observed species to get something proportional to the amount of complex.</p>
+        <div class="formula">\[ Y = \Delta\delta_{\text{obs}}\,x_{\text{H}} \;\propto\; [\mathrm{HG}] \]</div>
+        <div class="example"><b>Literature:</b> Collum and co-workers used <sup>6</sup>Li NMR Job plots to work out how lithium enolates of simple ketones aggregate in solution: mixing two enolates creates mixed aggregates whose number and proportions reveal the aggregate size.<sup class="cite"><a href="references.html#r12">12</a></sup> (See Application 3.)</div>
+        <p class="why"><b>Watch for:</b> slow exchange (separate peaks, so integrate instead), and the need to choose a proton whose shift changes clearly.</p>
+      </div>
+
+      <div class="card top" style="--rc:var(--warn)">
+        <span class="klabel">4 · Gravimetric</span>
+        <p>When the product is an insoluble solid, filter, dry and weigh it. The mass of precipitate is proportional to the moles of product, so the heaviest precipitate marks the stoichiometric mixture. A quick version measures precipitate <i>height</i> in identical test tubes.</p>
+        <div class="formula">\[ Y = m_{\text{ppt}} = n_{\text{product}} \times \mathcal{M}_{\text{product}} \]</div>
+        <div class="example"><b>Literature:</b> Furlong, Rubinski and Indralingam (2013) had students mix BaCl<sub>2</sub> with (NH<sub>4</sub>)<sub>2</sub>HPO<sub>4</sub> under neutral, acidic and basic conditions, weigh the dried precipitates, and use continuous-variation plots to show that a different barium phosphate forms in each medium.<sup class="cite"><a href="references.html#r13">13</a></sup></div>
+        <p class="why"><b>Watch for:</b> mass is an <i>extensive</i> quantity, so total volume and total moles must be identical in every mixture (Section 4). Incomplete drying and co-precipitation add error.</p>
+      </div>
+
+      <div class="card top" style="--rc:var(--bad)">
+        <span class="klabel">5 · Thermometric (calorimetric)</span>
+        <p>A fast, exothermic reaction releases heat in proportion to the moles that react. Mix the solutions in an insulated cup and record the temperature rise; the hottest mixture is the stoichiometric one.</p>
+        <div class="formula">\[ \Delta T = \frac{-\Delta H_{\text{r}}\; n_{\text{reacted}}}{C_{\text{p,total}}} \]</div>
+        <div class="example"><b>Literature:</b> In a widely used teaching experiment, sodium hypochlorite (bleach) and sodium thiosulfate are mixed in different proportions at constant total volume; the largest \(\Delta T\) comes at 4 OCl<sup>−</sup> : 1 S<sub>2</sub>O<sub>3</sub><sup>2−</sup>, which fixes the coefficients:<sup class="cite"><a href="references.html#r14">14</a></sup>
+          <div class="formula">\[ \ce{S2O3^2- + 4OCl- + 2OH- -> 2SO4^2- + 4Cl- + H2O} \]</div></div>
+        <p class="why"><b>Watch for:</b> heat loss to the surroundings, different starting temperatures, and slow reactions. Isothermal titration calorimetry (ITC) is the modern, more sensitive relative of this approach.</p>
+      </div>
+
+      <div class="card top" style="--rc:var(--data)">
+        <span class="klabel">6 · Potentiometric</span>
+        <p>An ion-selective electrode (or a pH electrode) reports the activity of <i>free</i> metal ion (or of H<sup>+</sup> released on binding). The amount bound is what is missing from the total.</p>
+        <div class="formula">\[ E = E^{\circ\prime} + \frac{RT}{zF}\ln[\mathrm{M}]_{\text{free}} \qquad Y = c_{\text{M}} - [\mathrm{M}]_{\text{free}} \]</div>
+        <div class="example"><b>Literature:</b> Work on copper–citrate solutions measured free Cu<sup>2+</sup> with a copper ion-selective electrode and analysed the mixtures by Job’s method as modified by Vosburgh and Cooper, pointing to a 1:1 copper–citrate complex.<sup class="cite"><a href="references.html#r15">15</a></sup></div>
+        <p class="why"><b>Watch for:</b> the electrode responds to activity, so ionic strength must be held constant; slow electrode response at low concentrations.</p>
+      </div>
+
+      <div class="card top" style="--rc:var(--good)">
+        <span class="klabel">7 · Conductometric</span>
+        <p>Binding changes the number and mobility of ions: a bulky crown ether wrapped around K<sup>+</sup> moves more slowly than bare K<sup>+</sup>. The departure of the measured conductivity from the no-reaction (additive) value tracks the complex.</p>
+        <div class="formula">\[ Y = \big[x\,\kappa_{\text{M}} + (1-x)\,\kappa_{\text{L}}\big] - \kappa_{\text{obs}} \]</div>
+        <div class="example"><b>Literature:</b> Çalışır and Çiçek (2019) adapted the Job plot to conductivity measurements to study how benzo-thio and benzo-oxo crown ethers bind metal ions such as Na<sup>+</sup> and K<sup>+</sup> in 50% acetonitrile–water.<sup class="cite"><a href="references.html#r16">16</a></sup></div>
+        <p class="why"><b>Watch for:</b> only works when complexation changes ion mobility noticeably; temperature must be tightly controlled (conductivity rises about 2% per °C).</p>
+      </div>
+
+      <div class="card top" style="--rc:var(--pink)">
+        <span class="klabel">8 · Mass spectrometry (ESI-MS)</span>
+        <p>Electrospray ionization carries intact non-covalent complexes into the gas phase. The intensity of the complex ion, relative to the free host, stands in for its concentration.</p>
+        <div class="formula">\[ Y = \Delta I_{\text{rel}} \times x_{\text{host}} \]</div>
+        <div class="example"><b>Literature:</b> Mathieson, Cooper and Cronin (2014) introduced ESI-MS Job plots; for 12-crown-4 with Li<sup>+</sup> the plot peaked at a mole fraction of 0.5 (1:1), and anion binding by a receptor was cross-checked against an NMR Job plot.<sup class="cite"><a href="references.html#r17">17</a></sup></div>
+        <p class="why"><b>Watch for:</b> different species ionize with different efficiencies, and complexes can fall apart or form in the spray.</p>
+      </div>
+
+      <div class="card top" style="--rc:var(--med)">
+        <span class="klabel">9 · Capillary electrophoresis</span>
+        <p>CE separates complexes by charge and size, so each species gives its own peak. A separate Job plot for each peak can reveal several complexes in the same mixtures.</p>
+        <div class="formula">\[ Y_i = \text{peak area of species } i \]</div>
+        <div class="example"><b>Literature:</b> Boland and Stone (2013) used CE Job plots on nickel(II) with the chelating agent DTPA; three CE peaks gave maxima at Ni : DTPA = 1:1, 1:2 and a previously unreported 3:2.<sup class="cite"><a href="references.html#r18">18</a></sup></div>
+        <p class="why"><b>Watch for:</b> complexes must survive the separation (kinetically inert), and peak areas need calibration.</p>
+      </div>
+
+      <div class="card top" style="--rc:var(--warn)">
+        <span class="klabel">10 · Absorbance with variable path length (biochemistry)</span>
+        <p>Very tight binding needs very dilute solutions, where absorbance is tiny. Lengthening the cell path as the concentration drops keeps the signal measurable.</p>
+        <div class="formula">\[ A = \varepsilon\, b\, c \quad (b \text{ raised as } c \text{ falls}) \]</div>
+        <div class="example"><b>Literature:</b> Davydov, Fernando and Halpert (2006) developed variable-path-length and counter-flow versions of the continuous-variation method and applied them to substrate binding by cytochromes P450 3A4 and P450eryF.<sup class="cite"><a href="references.html#r19">19</a></sup></div>
+        <p class="why"><b>Watch for:</b> proteins can aggregate or have several binding sites, which blurs the peak.</p>
+      </div>
+
+      <div class="card top" style="--rc:var(--muted)">
+        <span class="klabel">11 · Other properties</span>
+        <p>Any property that is additive for the pure components and changes on complex formation can be used, including:</p>
+        <ul>
+          <li>freezing point, density, viscosity, refractive index, dielectric constant or surface tension of binary liquid mixtures (the earliest uses)<sup class="cite"><a href="references.html#r2">2,3,5</a></sup></li>
+          <li>circular dichroism (chiral complexes) and IR band intensities</li>
+          <li>polarographic or amperometric current of an electroactive species</li>
+          <li>initial reaction rate, when the complex is the active catalyst</li>
+          <li>solubility of a sparingly soluble partner</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tbl"><table class="gridtbl methtbl">
+      <thead><tr><th>Method</th><th>What you measure</th><th>Quantity plotted against \(x\)</th><th>Typical concentration</th><th>Main caveat</th></tr></thead>
+      <tbody>
+        <tr><td>UV–visible</td><td>Absorbance</td><td>Corrected \(A\)</td><td>10<sup>−5</sup>–10<sup>−2</sup> M</td><td>Beer’s law; reactant absorbance</td></tr>
+        <tr><td>Fluorescence</td><td>Emission intensity</td><td>Corrected \(F\)</td><td>10<sup>−7</sup>–10<sup>−5</sup> M</td><td>Inner filter, quenching</td></tr>
+        <tr><td>NMR</td><td>Chemical shift or integral</td><td>\(\Delta\delta \times x\)</td><td>10<sup>−3</sup>–10<sup>−1</sup> M</td><td>Exchange regime; sensitivity</td></tr>
+        <tr><td>Gravimetric</td><td>Mass (or height) of precipitate</td><td>\(m_{\text{ppt}}\)</td><td>10<sup>−2</sup>–10<sup>−1</sup> M</td><td>Extensive: volume must be constant</td></tr>
+        <tr><td>Thermometric</td><td>Temperature rise</td><td>\(\Delta T\)</td><td>0.1–1 M</td><td>Heat loss; fast reactions only</td></tr>
+        <tr><td>Potentiometric</td><td>Electrode potential</td><td>Bound M (or H<sup>+</sup> released)</td><td>10<sup>−5</sup>–10<sup>−2</sup> M</td><td>Activity vs. concentration</td></tr>
+        <tr><td>Conductometric</td><td>Conductivity</td><td>Deviation from additivity</td><td>10<sup>−4</sup>–10<sup>−2</sup> M</td><td>Temperature; small changes</td></tr>
+        <tr><td>ESI-MS</td><td>Ion intensity</td><td>Relative intensity \(\times x\)</td><td>10<sup>−6</sup>–10<sup>−4</sup> M</td><td>Ionization efficiency</td></tr>
+        <tr><td>Capillary electrophoresis</td><td>Peak area per species</td><td>Area of each peak</td><td>10<sup>−5</sup>–10<sup>−3</sup> M</td><td>Complex must survive separation</td></tr>
+      </tbody>
+    </table></div>
+    <p class="swipehint tblw">Swipe the table sideways to see every column.</p>
+    <p class="src-line">Concentration ranges are typical working ranges, not hard limits. Reviews of the method across many techniques: Renny et al. (2013), Huang (1982), Gil and Oliveira (1990).<sup class="cite"><a href="references.html#r5">5–7</a></sup></p>
+  </div>
+</section>
+
+<!-- ======================================================= 4. CONSTANT VOLUME ======================================================= -->
+<section class="block" id="volume">
+  <div class="wrap">
+    <div class="sechead">
+      <span class="eyebrow">Section 4</span>
+      <h2>Why the total volume must stay constant</h2>
+      <p class="prose muted">The derivation in Section 2 assumed that the total concentration \(c_{\text{T}} = c_{\text{M}} + c_{\text{L}}\) is the same in every mixture. Keeping the total volume constant, with equimolar stocks, is how you make that true in the lab. Change the volume from one mixture to the next and the signal starts reporting dilution as well as composition.</p>
+    </div>
+
+    <div class="two">
+      <div class="eqn">
+        <h3>What constant volume guarantees</h3>
+        <div class="eqrow">
+          <p class="note">Each mixture is made from equimolar stocks (\(c_0\)) and brought to a total volume \(V_{\text{T}}\):</p>
+          <div class="formula">\[ c_{\text{M}} = \frac{c_0 V_{\text{M}}}{V_{\text{T}}} \qquad c_{\text{L}} = \frac{c_0 V_{\text{L}}}{V_{\text{T}}} \]</div>
+        </div>
+        <div class="eqrow">
+          <div class="formula">\[ c_{\text{T}} = c_{\text{M}} + c_{\text{L}} = c_0\,\frac{V_{\text{M}} + V_{\text{L}}}{V_{\text{T}}} = c_0 \quad\text{only when } V_{\text{M}} + V_{\text{L}} = V_{\text{T}} \text{ in every mixture} \]</div>
+        </div>
+        <div class="eqrow">
+          <p class="note">If mixture \(i\) instead ends up in its own final volume \(V_{\text{f},i}\), its total concentration becomes</p>
+          <div class="formula">\[ c_{\text{T},i} = c_0\,\frac{V_{\text{T}}}{V_{\text{f},i}} \]</div>
+          <p class="note">and its signal is scaled by a factor that has nothing to do with stoichiometry.</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Four reasons it matters</h3>
+        <ol class="steps">
+          <li><b>Composition is the only variable.</b> At constant \(c_{\text{T}}\), any change in signal comes from the change in \(x\), not from dilution.</li>
+          <li><b>Mole fraction equals volume fraction</b> (\(x_{\text{L}} = V_{\text{L}}/V_{\text{T}}\)), so you can set \(x\) with a burette.</li>
+          <li><b>Extensive signals stay comparable.</b> Precipitate mass, heat released and precipitate height scale with the total <i>amount</i>. Every mixture must contain the same total moles in the same volume.</li>
+          <li><b>The baseline is a straight line.</b> The no-reaction signal \(x\,Y_{\text{M}} + (1-x)\,Y_{\text{L}}\) is linear in \(x\) only at constant \(c_{\text{T}}\), so the correction in Section 2 works.</li>
+        </ol>
+        <p class="why">The same holds for everything else in the medium: buffer, ionic strength, solvent composition and temperature should be identical in every flask.</p>
+      </div>
+    </div>
+
+    <div class="card wide">
+      <h3>A correctly designed series (\(V_{\text{T}}\) = 10.00 mL, \(c_0\) = 1.00 mM)</h3>
+      <div class="tbl"><table class="gridtbl datatbl">
+        <thead><tr><th>Mixture</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th></tr></thead>
+        <tbody>
+          <tr><td>\(V_{\text{M}}\) (mL)</td><td>10.00</td><td>9.00</td><td>8.00</td><td>7.00</td><td>6.00</td><td>5.00</td><td>4.00</td><td>3.00</td><td>2.00</td><td>1.00</td><td>0.00</td></tr>
+          <tr><td>\(V_{\text{L}}\) (mL)</td><td>0.00</td><td>1.00</td><td>2.00</td><td>3.00</td><td>4.00</td><td>5.00</td><td>6.00</td><td>7.00</td><td>8.00</td><td>9.00</td><td>10.00</td></tr>
+          <tr><td>\(x_{\text{L}}\)</td><td>0.0</td><td>0.1</td><td>0.2</td><td>0.3</td><td>0.4</td><td>0.5</td><td>0.6</td><td>0.7</td><td>0.8</td><td>0.9</td><td>1.0</td></tr>
+          <tr><td>\(c_{\text{T}}\) (mM)</td><td>1.00</td><td>1.00</td><td>1.00</td><td>1.00</td><td>1.00</td><td>1.00</td><td>1.00</td><td>1.00</td><td>1.00</td><td>1.00</td><td>1.00</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="bench" id="simV">
+      <div class="bhead">
+        <span class="tagi">Interactive · What volume changes do to a Job plot</span>
+        <h3>Let the volume drift across the series and watch the formula go wrong</h3>
+        <p class="note">The drift makes the volume of mixture \(i\) equal to \(V(1 + d\,(2x_{\text{L}} - 1))\): mixtures rich in M get less volume and mixtures rich in L get more (or the reverse, for negative \(d\)). Straight lines are fitted through the three points at each end, the way a student would extrapolate, and their intersection gives the reported formula.</p>
+      </div>
+      <div class="bench-grid">
+        <figure class="fig">
+          <svg class="plot" id="plotV" role="img" aria-label="Job plot comparing a constant-volume series with a series whose volume drifts; extrapolated end lines and their intersection are drawn for the drifting series."></svg>
+          <div class="legend"><span><i class="dash" style="--c:var(--muted)"></i>constant volume (correct)</span><span><i style="--c:var(--bad)"></i>volume drifts</span><span><i class="dot" style="--c:var(--bad)"></i>measured mixtures</span><span><i class="dash" style="--c:var(--warn)"></i>extrapolated end lines</span></div>
+        </figure>
+        <div class="side">
+          <div class="ctl">What is measured
+            <div class="seg" id="segVm" role="group" aria-label="What is measured">
+              <button type="button" data-v="abs" aria-pressed="true">Absorbance</button>
+              <button type="button" data-v="mass">Precipitate mass</button>
+            </div>
+          </div>
+          <p class="note" id="vModeTxt"></p>
+          <div class="ctl">True formula
+            <div class="seg" id="segVf" role="group" aria-label="True formula">
+              <button type="button" data-n="1" aria-pressed="true">ML</button>
+              <button type="button" data-n="2">ML<sub>2</sub></button>
+            </div>
+          </div>
+          <label class="ctl slider" for="sV"><span>Volume drift, \(d\) = <output id="sVo"></output></span>
+            <input type="range" id="sV" min="-0.5" max="0.5" step="0.05" value="0.3"></label>
+          <div class="statgrid">
+            <div class="stat"><div class="k">True peak \(x_{\text{L}}\)</div><div class="v" id="vTrue"></div></div>
+            <div class="stat" id="vAppBox"><div class="k">Lines meet at \(x_{\text{L}}\)</div><div class="v" id="vApp"></div></div>
+            <div class="stat"><div class="k">Volume of first / last mixture</div><div class="v" id="vVols"></div></div>
+            <div class="stat" id="vFBox"><div class="k">Formula you would report</div><div class="v" id="vF"></div></div>
+          </div>
+          <p class="hint">Set \(d = 0\) to recover the correct plot. Then try \(d = \pm 0.3\) (a 30% volume error at each end): for ML the lines now cross near 0.41 or 0.59, which you would read as M<sub>3</sub>L<sub>2</sub> or M<sub>2</sub>L<sub>3</sub>. Notice that the drift pushes absorbance and precipitate mass in <i>opposite</i> directions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h4>Why the end lines tilt</h4>
+        <p>Near \(x_{\text{L}} = 0\) the signal rises as \(c_{\text{T},i}\,x\), and near \(x_{\text{L}} = 1\) it falls as \(c_{\text{T},i}(1-x)\). If \(c_{\text{T}}\) (or total moles) drifts across the series, one line becomes steeper and the other shallower, so they cross at the wrong place.</p>
+        <ul>
+          <li><b>Concentration signals</b> (absorbance, fluorescence): a bigger final volume <i>dilutes</i>, so the signal drops where the volume is largest and the crossing moves away from that end.</li>
+          <li><b>Amount signals</b> (mass, heat): a bigger delivered volume holds <i>more moles</i>, so the signal grows where the volume is largest and the crossing moves toward that end.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>When the reaction is weak</h4>
+        <p>For a sharp triangle (complete reaction), the highest <i>point</i> can survive a modest drift, but the extrapolated lines do not. For a rounded curve (weak binding), even the highest point moves toward the more concentrated end, because the amount of complex depends on concentration more than linearly.</p>
+      </div>
+      <div class="card">
+        <h4>When the stocks are not equimolar</h4>
+        <p>If the ligand stock is \(p\) times as concentrated as the metal stock, the peak in <i>volume</i> fraction moves, but the ratio can still be recovered:</p>
+        <div class="formula">\[ \frac{n}{m} = \frac{p\,(1 - f_{\max})}{f_{\max}} \qquad f = \frac{V_{\text{M}}}{V_{\text{T}}} \]</div>
+        <p class="why">Constant total volume is still required. Only the conversion from volume to mole fraction changes.</p>
+      </div>
+      <div class="card">
+        <h4>Hidden volume changes</h4>
+        <ul>
+          <li>Mixing solvents (ethanol + water) gives a total volume smaller than the sum: dilute to the mark, don’t just add volumes.</li>
+          <li>Adding a reagent “to each tube” (buffer, reductant, indicator) without adding the same volume to all of them.</li>
+          <li>Evaporation from open tubes while slow reactions equilibrate.</li>
+          <li>Warming: solution volume rises about 0.02% per °C, so compare at one temperature.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= 5. APPLICATIONS + LIMITS ======================================================= -->
+<section class="block" id="apps">
+  <div class="wrap">
+    <div class="sechead">
+      <span class="eyebrow">Section 5</span>
+      <h2>Three applications in chemistry, and where the method breaks down</h2>
+      <p class="prose muted">Each plot below is calculated from constants published for that system, so its shape is what an experiment would give under the stated conditions.</p>
+    </div>
+
+    <!-- App 1 -->
+    <div class="subhead"><span class="klabel">Application 1 · Analytical chemistry</span><h3>Designing an assay: iron with 1,10-phenanthroline</h3></div>
+    <div class="two">
+      <figure class="fig card">
+        <svg class="plot" id="plotApp1" role="img" aria-label="Job plot for iron(II) and 1,10-phenanthroline: absorbance at 510 nanometres against mole fraction of iron. The points form a sharp triangle with its peak at a mole fraction of 0.25."></svg>
+        <figcaption>Job plot for Fe<sup>2+</sup> + phen, \(c_{\text{T}} = 2.00 \times 10^{-4}\) M, 1.00 cm cell, 510 nm. Calculated with \(\log\beta_3 = 21.3\) and \(\varepsilon_{510} = 1.11 \times 10^{4}\ \text{M}^{-1}\text{cm}^{-1}\).<sup class="cite"><a href="references.html#r20">20,27</a></sup></figcaption>
+      </figure>
+      <div class="card">
+        <p>Iron(II) and 1,10-phenanthroline form the intensely orange-red ferroin ion, the basis of a standard method for determining iron in water, foods and pharmaceuticals.<sup class="cite"><a href="references.html#r20">20</a></sup></p>
+        <div class="formula">\[ \ce{Fe^2+ + 3phen -> [Fe(phen)3]^2+} \]</div>
+        <p>The Job plot peaks at \(x_{\text{Fe}} = 0.25\), so three phenanthrolines bind each iron. The binding is so strong (\(\beta_3 \approx 10^{21}\ \text{M}^{-3}\)) that the plot is an almost perfect triangle; the slopes of its two sides give \(\varepsilon\) directly.</p>
+        <p class="why"><b>Why it matters:</b> knowing the ratio is 3:1 tells the analyst to add phenanthroline in a clear excess (well over three per iron), so that all of the iron is converted and absorbance is proportional to iron concentration (Beer’s law calibration).</p>
+      </div>
+    </div>
+
+    <!-- App 2 -->
+    <div class="subhead"><span class="klabel">Application 2 · Supramolecular and pharmaceutical chemistry</span><h3>Host–guest inclusion: cyclodextrins carrying drugs</h3></div>
+    <div class="two">
+      <figure class="fig card">
+        <svg class="plot" id="plotApp2" role="img" aria-label="Job plots for hydroxymethylferrocene with beta-cyclodextrin at two total concentrations. Both curves are rounded and both peak at a mole fraction of 0.5; the more dilute series forms much less complex."></svg>
+        <div class="legend"><span><i style="--c:var(--accent)"></i>\(c_{\text{T}}\) = 20 mM</span><span><i style="--c:var(--data)"></i>\(c_{\text{T}}\) = 2 mM</span><span><i class="dash" style="--c:var(--muted)"></i>complete reaction</span></div>
+        <figcaption>Fraction of the total present as the inclusion complex, calculated with \(K = 478\ \text{M}^{-1}\) (from NMR).<sup class="cite"><a href="references.html#r21">21</a></sup></figcaption>
+      </figure>
+      <div class="card">
+        <p>Cyclodextrins (CDs) are ring-shaped sugars with a water-repelling cavity. Drugs that are poorly soluble in water can slip into the cavity, which raises their solubility and stability. Formulation chemists need the stoichiometry before they can choose a binding model or a dose.</p>
+        <div class="formula">\[ \beta\text{-CD} + \text{G} \rightleftharpoons \beta\text{-CD}\cdot\text{G} \qquad K = \frac{[\text{CD}\cdot\text{G}]}{[\text{CD}][\text{G}]} \]</div>
+        <p>Iacovino et al. (2012) studied hydroxymethylferrocene, an anticancer candidate, with β-cyclodextrin. A Job plot established 1:1 inclusion, and NMR and UV–visible titrations gave \(K \approx 478\) and \(541\ \text{M}^{-1}\).<sup class="cite"><a href="references.html#r21">21</a></sup></p>
+        <p class="why"><b>Lesson from the plot:</b> with modest \(K\), the curve is rounded and the amount of complex depends strongly on \(c_{\text{T}}\), yet both curves peak at 0.50, exactly as the derivation predicts for a single complex. Rounded curves are typical of host–guest chemistry, which is why reviewers recommend confirming Job results with full titrations.<sup class="cite"><a href="references.html#r9">9,10</a></sup></p>
+      </div>
+    </div>
+
+    <!-- App 3 -->
+    <div class="subhead"><span class="klabel">Application 3 · Organometallic chemistry</span><h3>Counting the units in an aggregate: lithium enolates</h3></div>
+    <div class="two">
+      <figure class="fig card">
+        <div class="seg" id="segApp3" role="group" aria-label="Aggregate size">
+          <button type="button" data-n="2">Dimer</button>
+          <button type="button" data-n="4" aria-pressed="true">Tetramer</button>
+          <button type="button" data-n="6">Hexamer</button>
+        </div>
+        <svg class="plot" id="plotApp3" role="img" aria-label="Ensemble Job plot for mixtures of two lithium enolates A and B: the mole fraction of each aggregate, from pure B aggregate to pure A aggregate, against the mole fraction of A. The number of curves equals the aggregate size plus one."></svg>
+        <figcaption>Ideal (statistical) distribution of aggregates \(\mathrm{A}_k\mathrm{B}_{N-k}\) as the mole fraction of enolate A rises. Each curve peaks at \(X_{\text{A}} = k/N\).</figcaption>
+      </figure>
+      <div class="card">
+        <p>Organolithium reagents and lithium enolates rarely exist as single molecules in solution; they cluster into dimers, tetramers or hexamers, and the size controls their reactivity. An ordinary Job plot cannot see the size (a 1:1 ratio fits a dimer and a tetramer alike).</p>
+        <p>Collum’s group solved this by mixing <b>two different enolates</b>, A and B, at constant total concentration. They exchange to form mixed aggregates, each with its own <sup>6</sup>Li NMR signal.<sup class="cite"><a href="references.html#r12">12</a></sup> The number of species and where each one peaks reveal \(N\):</p>
+        <div class="formula">\[ P(\mathrm{A}_k\mathrm{B}_{N-k}) = \binom{N}{k}\,X_{\text{A}}^{\,k}\,(1-X_{\text{A}})^{N-k} \]</div>
+        <p class="why"><b>Read the plot:</b> a dimer gives 3 species (A<sub>2</sub>, AB, B<sub>2</sub>), a tetramer 5, a hexamer 7. Departures from the ideal curves show which mixed aggregates are favored.<sup class="cite"><a href="references.html#r5">5,12</a></sup></p>
+      </div>
+    </div>
+
+    <div class="partdiv"></div>
+
+    <!-- LIMITATIONS -->
+    <div class="sechead" id="limits">
+      <span class="eyebrow">Section 5 · Limitations</span>
+      <h2>When a Job plot can mislead you</h2>
+      <p class="prose muted">The neat result \(x_{\max} = n/(m+n)\) rests on assumptions. When they fail, the peak can still look convincing while pointing to the wrong formula. Recent reviews argue that in host–guest chemistry this happens often enough that Job plots should not be used alone.<sup class="cite"><a href="references.html#r9">9,10</a></sup></p>
+    </div>
+
+    <div class="bench" id="simL">
+      <div class="bhead">
+        <span class="tagi">Interactive · Two complexes at once</span>
+        <h3>ML and ML<sub>2</sub> together give a peak that matches neither</h3>
+        <p class="note">Stepwise binding \(\mathrm{M} + \mathrm{L} \rightleftharpoons \mathrm{ML}\) (\(K_1 = 10^{4}\ \text{M}^{-1}\)) and \(\mathrm{ML} + \mathrm{L} \rightleftharpoons \mathrm{ML_2}\) (\(K_2\), adjustable), \(c_{\text{T}} = 1.00\) mM. The signal adds both complexes, with ML<sub>2</sub> absorbing 1.5 times as strongly as ML.</p>
+      </div>
+      <div class="bench-grid">
+        <figure class="fig">
+          <svg class="plot" id="plotL" role="img" aria-label="Job plot with two complexes: total signal and the separate contributions of ML and ML2 against mole fraction of ligand."></svg>
+          <div class="legend"><span><i style="--c:var(--accent)"></i>total signal</span><span><i class="dash" style="--c:var(--data)"></i>[ML]</span><span><i class="dash" style="--c:var(--med)"></i>[ML<sub>2</sub>]</span></div>
+        </figure>
+        <div class="side">
+          <label class="ctl slider" for="sL"><span>\(\log K_2\) = <output id="sLo"></output></span>
+            <input type="range" id="sL" min="0" max="7" step="0.1" value="3.5"></label>
+          <div class="statgrid">
+            <div class="stat"><div class="k">Peak at \(x_{\text{L}}\)</div><div class="v" id="lPk"></div></div>
+            <div class="stat"><div class="k">Apparent ratio L : M</div><div class="v" id="lRat"></div></div>
+            <div class="stat wide"><div class="k">At the peak, metal present as</div><div class="v" id="lMix"></div></div>
+          </div>
+          <p class="hint">At small \(K_2\) the peak sits at 0.50 (ML); at large \(K_2\) it reaches 0.67 (ML<sub>2</sub>). In between, a peak near 0.58 suggests a “1.4:1 complex” that does not exist. Vosburgh and Cooper’s remedy was to repeat the series at several wavelengths.<sup class="cite"><a href="references.html#r4">4</a></sup></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card top" style="--rc:var(--bad)">
+        <h4>1 · Only one complex may dominate</h4>
+        <p>Stepwise equilibria (ML, ML<sub>2</sub>, ML<sub>3</sub>) or competing species (M<sub>2</sub>L and ML) shift the peak to an intermediate, meaningless position (see above).</p>
+      </div>
+      <div class="card top" style="--rc:var(--bad)">
+        <h4>2 · Weak binding blurs the answer</h4>
+        <p>When \(\beta c_{\text{T}}^{\,m+n-1}\) is small, the curve flattens, extrapolation becomes guesswork, and noise can move the apparent maximum. Raising \(c_{\text{T}}\) helps only if solubility allows.<sup class="cite"><a href="references.html#r8">8,9</a></sup></p>
+      </div>
+      <div class="card top" style="--rc:var(--bad)">
+        <h4>3 · Ratio, not size</h4>
+        <p>ML, M<sub>2</sub>L<sub>2</sub> and M<sub>3</sub>L<sub>3</sub> all peak at 0.50. Aggregation number needs a separate measurement (Application 3, MS, colligative properties).</p>
+      </div>
+      <div class="card top" style="--rc:var(--warn)">
+        <h4>4 · The signal must be linear and additive</h4>
+        <p>Beer’s-law deviations, fluorescence inner-filter effects, self-association of a dye, or NMR signals in intermediate exchange all break the proportionality between signal and complex.</p>
+      </div>
+      <div class="card top" style="--rc:var(--warn)">
+        <h4>5 · The medium must not take part</h4>
+        <p>pH changes alter ligand protonation and metal hydrolysis; buffers and counter-ions can bind the metal. Ionic strength must be held constant, especially for potentiometric and conductometric work.</p>
+      </div>
+      <div class="card top" style="--rc:var(--warn)">
+        <h4>6 · Equilibrium must be reached</h4>
+        <p>Slow reactions, aging precipitates and kinetically inert complexes need time; measuring too early distorts the curve.</p>
+      </div>
+      <div class="card top" style="--rc:var(--muted)">
+        <h4>7 · Constant total concentration is restrictive</h4>
+        <p>You sample only one \(c_{\text{T}}\). Fitting a binding constant reliably usually needs a titration over a wider range (hold one partner fixed and add the other), analysed by global non-linear fitting.<sup class="cite"><a href="references.html#r9">9,10</a></sup></p>
+      </div>
+      <div class="card top" style="--rc:var(--muted)">
+        <h4>8 · Practical limits</h4>
+        <p>Reactant absorbance must be measured and subtracted; spectral overlap limits wavelength choice; high-ratio complexes (ML<sub>4</sub> to ML<sub>6</sub>) peak too close together to tell apart without dense, precise data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= 6. PROBLEMS ======================================================= -->
+<section class="block" id="problems">
+  <div class="wrap">
+    <div class="sechead">
+      <span class="eyebrow">Section 6</span>
+      <h2>Problems</h2>
+      <p class="prose muted">Each problem uses a system from the literature that does not appear in the earlier sections. The data were generated from the published formula, formation constant and molar absorptivity (or molar mass) of the system, with small random errors added, so they behave like real measurements. Try each problem before opening its solution.</p>
+    </div>
+
+    <!-- Problem 1 -->
+    <article class="problem" id="p1">
+      <div class="bhead"><span class="tagi">Problem 1 · Spectrophotometric, weak binding</span><h3>The blood-red iron(III) thiocyanate complex</h3></div>
+      <p>Iron(III) and thiocyanate form a red complex, studied spectrophotometrically by Frank and Oswalt (1947).<sup class="cite"><a href="references.html#r22">22</a></sup> A student prepares 2.00 × 10<sup>−3</sup> M Fe(NO<sub>3</sub>)<sub>3</sub> and 2.00 × 10<sup>−3</sup> M KSCN, both in 0.50 M HNO<sub>3</sub>, and mixes them to a constant total volume of 10.00 mL. Absorbance is read at 447 nm in a 1.00 cm cell; neither reactant absorbs there. The molar absorptivity of the complex at 447 nm is 4.70 × 10<sup>3</sup> M<sup>−1</sup> cm<sup>−1</sup>.</p>
+      <div class="two">
+        <div class="tbl"><table class="gridtbl datatbl">
+          <thead><tr><th>\(V_{\text{Fe}}\) (mL)</th><th>\(V_{\text{SCN}}\) (mL)</th><th>\(A_{447}\)</th></tr></thead>
+          <tbody>
+            <tr><td>10.00</td><td>0.00</td><td>0.000</td></tr>
+            <tr><td>9.00</td><td>1.00</td><td>0.183</td></tr>
+            <tr><td>8.00</td><td>2.00</td><td>0.330</td></tr>
+            <tr><td>7.00</td><td>3.00</td><td>0.429</td></tr>
+            <tr><td>6.00</td><td>4.00</td><td>0.495</td></tr>
+            <tr><td>5.00</td><td>5.00</td><td>0.512</td></tr>
+            <tr><td>4.00</td><td>6.00</td><td>0.496</td></tr>
+            <tr><td>3.00</td><td>7.00</td><td>0.432</td></tr>
+            <tr><td>2.00</td><td>8.00</td><td>0.326</td></tr>
+            <tr><td>1.00</td><td>9.00</td><td>0.185</td></tr>
+            <tr><td>0.00</td><td>10.00</td><td>0.000</td></tr>
+          </tbody>
+        </table></div>
+        <figure class="fig"><svg class="plot" id="plotP1" role="img" aria-label="Plot of the problem 1 data: absorbance against mole fraction of iron. The points form a rounded, symmetrical hump."></svg><figcaption>The data plotted against \(x_{\text{Fe}}\). The fitted curve appears when you open the solution.</figcaption></figure>
+      </div>
+      <ol class="q">
+        <li>Convert each mixture to \(x_{\text{Fe}}\). At what mole fraction is the absorbance largest? What is the formula (with charge) of the complex?</li>
+        <li>Why is the plot a rounded hump rather than a sharp triangle? Why would extrapolating straight lines from the ends be unreliable here?</li>
+        <li>Use the absorbance at the peak and the molar absorptivity to find [complex], [Fe<sup>3+</sup>] and [SCN<sup>−</sup>] at equilibrium, and calculate the formation constant \(K_{\text{f}}\).</li>
+        <li>Why are both solutions made up in 0.50 M HNO<sub>3</sub> rather than water?</li>
+      </ol>
+      <details class="sol" data-plot="p1">
+        <summary>Show solution</summary>
+        <div class="solbody">
+          <ol>
+            <li>\(x_{\text{Fe}} = V_{\text{Fe}}/10.00\), so the mixtures run from 1.0 to 0.0 in steps of 0.1. The maximum (0.512) is at \(x_{\text{Fe}} = 0.50\) and the plot is symmetric about it, so Fe : SCN = 1 : 1.
+              <div class="formula">\[ \ce{Fe^3+ + SCN- <=> FeSCN^2+} \]</div></li>
+            <li>The complex is only moderately stable, so a sizeable fraction stays dissociated at every composition, rounding the peak. Points near the ends still lie on a curve, not on the complete-reaction lines, so lines drawn through them would meet far above the data and give an unreliable \(A_{\text{ext}}\). The peak position is still trustworthy because only one complex forms (Section 2).</li>
+            <li>At the peak, \(c_{\text{Fe}} = c_{\text{SCN}} = 1.00 \times 10^{-3}\) M.
+              <div class="formula">\[ [\ce{FeSCN^2+}] = \frac{A}{\varepsilon b} = \frac{0.512}{(4.70 \times 10^{3}\ \text{M}^{-1}\text{cm}^{-1})(1.00\ \text{cm})} = 1.09 \times 10^{-4}\ \text{M} \]</div>
+              <div class="formula">\[ [\ce{Fe^3+}] = [\ce{SCN-}] = 1.00 \times 10^{-3} - 1.09 \times 10^{-4} = 8.91 \times 10^{-4}\ \text{M} \]</div>
+              <div class="formula">\[ K_{\text{f}} = \frac{1.09 \times 10^{-4}}{(8.91 \times 10^{-4})^{2}} = 1.4 \times 10^{2}\ \text{M}^{-1} \]</div>
+              Only about 11% of the iron is complexed, which explains the rounded shape.</li>
+            <li>Acid suppresses hydrolysis of Fe<sup>3+</sup> to brown FeOH<sup>2+</sup> and Fe(OH)<sub>2</sub><sup>+</sup>, which would absorb and compete with SCN<sup>−</sup>. It also fixes the ionic strength in every mixture, and nitrate is a very weak ligand for Fe<sup>3+</sup>.</li>
+          </ol>
+        </div>
+      </details>
+    </article>
+
+    <!-- Problem 2 -->
+    <article class="problem" id="p2">
+      <div class="bhead"><span class="tagi">Problem 2 · Gravimetric</span><h3>The red nickel precipitate with dimethylglyoxime</h3></div>
+      <p>Chugaev discovered in 1905 that nickel(II) and dimethylglyoxime (H<sub>2</sub>dmg) give a scarlet precipitate, still used for the gravimetric determination of nickel.<sup class="cite"><a href="references.html#r23">23</a></sup> A student mixes 0.0500 M NiCl<sub>2</sub> and 0.0500 M H<sub>2</sub>dmg (in ethanol–water) to a constant total volume of 10.00 mL, adds the same volume of ammonia buffer to every tube, and filters, dries (110 °C) and weighs each precipitate.</p>
+      <div class="two">
+        <div class="tbl"><table class="gridtbl datatbl">
+          <thead><tr><th>\(V_{\text{Ni}}\) (mL)</th><th>\(V_{\text{dmg}}\) (mL)</th><th>Mass of precipitate (mg)</th></tr></thead>
+          <tbody>
+            <tr><td>0.00</td><td>10.00</td><td>0.0</td></tr>
+            <tr><td>1.00</td><td>9.00</td><td>14.1</td></tr>
+            <tr><td>2.00</td><td>8.00</td><td>28.4</td></tr>
+            <tr><td>3.00</td><td>7.00</td><td>42.9</td></tr>
+            <tr><td>4.00</td><td>6.00</td><td>42.7</td></tr>
+            <tr><td>5.00</td><td>5.00</td><td>35.6</td></tr>
+            <tr><td>6.00</td><td>4.00</td><td>28.5</td></tr>
+            <tr><td>7.00</td><td>3.00</td><td>21.4</td></tr>
+            <tr><td>8.00</td><td>2.00</td><td>14.0</td></tr>
+            <tr><td>9.00</td><td>1.00</td><td>7.0</td></tr>
+            <tr><td>10.00</td><td>0.00</td><td>0.0</td></tr>
+          </tbody>
+        </table></div>
+        <figure class="fig"><svg class="plot" id="plotP2" role="img" aria-label="Plot of the problem 2 data: mass of precipitate against mole fraction of nickel. The points rise steeply, flatten between 0.3 and 0.4, and fall more gently."></svg><figcaption>The data plotted against \(x_{\text{Ni}}\). The extrapolated lines appear when you open the solution.</figcaption></figure>
+      </div>
+      <ol class="q">
+        <li>Two mixtures (0.30 and 0.40) give almost the same mass. Fit straight lines to the rising and falling branches and find where they intersect. What Ni : dmg ratio does this give?</li>
+        <li>Write a balanced equation for the precipitation, given that each dimethylglyoxime loses one proton when it binds. Why is the ammonia buffer needed?</li>
+        <li>The molar mass of Ni(Hdmg)<sub>2</sub> is 288.9 g mol<sup>−1</sup>. Calculate the theoretical maximum mass of precipitate in this series and compare it with the data.</li>
+        <li>Why is constant total volume (and constant total moles) even more important here than in a spectrophotometric Job plot?</li>
+        <li>A second student uses 0.0500 M Ni<sup>2+</sup> but 0.100 M H<sub>2</sub>dmg, still at 10.00 mL total. At what <i>volume</i> fraction of nickel solution will the maximum appear?</li>
+      </ol>
+      <details class="sol" data-plot="p2">
+        <summary>Show solution</summary>
+        <div class="solbody">
+          <ol>
+            <li>Rising branch (excess dmg, Ni limiting): mass ≈ 143\(x_{\text{Ni}}\) mg. Falling branch (excess Ni, dmg limiting): mass ≈ 71.4(1 − \(x_{\text{Ni}}\)) mg. Setting them equal:
+              <div class="formula">\[ 143\,x = 71.4\,(1-x) \quad\Longrightarrow\quad x_{\text{Ni}} = \frac{71.4}{214.4} = 0.333 \]</div>
+              Ni : dmg = 0.333 : 0.667 = 1 : 2. The peak falls between two mixtures, which is why the 0.30 and 0.40 points are nearly equal; extrapolation locates it.</li>
+            <li><div class="formula">\[ \ce{Ni^2+ + 2H2dmg -> Ni(Hdmg)2 v + 2H+} \]</div>
+              The reaction releases H<sup>+</sup>. Without a buffer the solution becomes acidic, H<sup>+</sup> competes with Ni<sup>2+</sup> for the ligand, and precipitation is incomplete; ammonia keeps the pH high enough for quantitative precipitation.</li>
+            <li>Total moles in each tube: \(n_{\text{T}} = (0.0500\ \text{M})(0.01000\ \text{L}) = 5.00 \times 10^{-4}\) mol. At \(x_{\text{Ni}} = 1/3\):
+              <div class="formula">\[ n_{\ce{Ni(Hdmg)2}} = \tfrac{1}{3}(5.00 \times 10^{-4}) = 1.67 \times 10^{-4}\ \text{mol} \qquad m = (1.67 \times 10^{-4})(288.9) = 48.2\ \text{mg} \]</div>
+              The extrapolated lines meet at about 47.5 mg, within 1.5% of theory; the small shortfall in every point is consistent with slight solubility and transfer losses.</li>
+            <li>Mass is <i>extensive</i>: it counts moles, not concentration. If one tube held more total solution (more moles), its precipitate would be heavier for that reason alone, tilting the branches and moving the intersection (Section 4). Spectrophotometric signals depend on concentration and are protected somewhat by equimolar stocks.</li>
+            <li>With \(p = c_{\text{dmg}}/c_{\text{Ni}} = 2\) and \(n/m = 2\):
+              <div class="formula">\[ \frac{n}{m} = \frac{p(1-f_{\max})}{f_{\max}} \quad\Longrightarrow\quad 2 = \frac{2(1-f_{\max})}{f_{\max}} \quad\Longrightarrow\quad f_{\max} = 0.50 \]</div>
+              The peak appears at equal volumes (5.00 mL + 5.00 mL), because the dmg solution is twice as concentrated. Reading this naively as 1:1 would be wrong.</li>
+          </ol>
+        </div>
+      </details>
+    </article>
+
+    <!-- Problem 3 -->
+    <article class="problem" id="p3">
+      <div class="bhead"><span class="tagi">Problem 3 · Spectrophotometric, strong binding, blank correction</span><h3>The copper–bicinchoninate complex behind the BCA protein assay</h3></div>
+      <p>The BCA protein assay (Smith et al., 1985) works because protein reduces Cu<sup>2+</sup> to Cu<sup>+</sup>, which bicinchoninate (BCA<sup>2−</sup>) captures as an intense purple complex absorbing at 562 nm.<sup class="cite"><a href="references.html#r24">24</a></sup> A student prepares 1.50 × 10<sup>−4</sup> M Cu<sup>+</sup> (Cu<sup>2+</sup> reduced with excess ascorbate) and 1.50 × 10<sup>−4</sup> M BCA, both in pH 7 buffer, and mixes them to 10.00 mL. Every cuvette, including a reagent blank with no copper or BCA, contains the same amount of ascorbate and buffer. The blank reads \(A_{562} = 0.012\). Path length 1.00 cm.</p>
+      <div class="two">
+        <div class="tbl"><table class="gridtbl datatbl">
+          <thead><tr><th>\(V_{\text{Cu}}\) (mL)</th><th>\(V_{\text{BCA}}\) (mL)</th><th>\(A_{562}\) (measured)</th></tr></thead>
+          <tbody>
+            <tr><td>0.00</td><td>10.00</td><td>0.012</td></tr>
+            <tr><td>1.00</td><td>9.00</td><td>0.129</td></tr>
+            <tr><td>2.00</td><td>8.00</td><td>0.241</td></tr>
+            <tr><td>2.50</td><td>7.50</td><td>0.302</td></tr>
+            <tr><td>3.00</td><td>7.00</td><td>0.360</td></tr>
+            <tr><td>3.50</td><td>6.50</td><td>0.384</td></tr>
+            <tr><td>4.00</td><td>6.00</td><td>0.359</td></tr>
+            <tr><td>5.00</td><td>5.00</td><td>0.299</td></tr>
+            <tr><td>6.00</td><td>4.00</td><td>0.245</td></tr>
+            <tr><td>7.00</td><td>3.00</td><td>0.186</td></tr>
+            <tr><td>8.00</td><td>2.00</td><td>0.126</td></tr>
+            <tr><td>9.00</td><td>1.00</td><td>0.072</td></tr>
+            <tr><td>10.00</td><td>0.00</td><td>0.012</td></tr>
+          </tbody>
+        </table></div>
+        <figure class="fig"><svg class="plot" id="plotP3" role="img" aria-label="Plot of the problem 3 data after blank correction: absorbance against mole fraction of copper. The points form a sharp, asymmetric triangle."></svg><figcaption>Blank-corrected data against \(x_{\text{Cu}}\). The extrapolated lines appear when you open the solution.</figcaption></figure>
+      </div>
+      <ol class="q">
+        <li>Correct the data for the blank and plot \(A\) against \(x_{\text{Cu}}\). From the intersection of the two straight branches, find the Cu : BCA ratio and write the formula and charge of the complex.</li>
+        <li>From the slope of the copper-limited branch, calculate the molar absorptivity of the complex at 562 nm. Compare it with the literature value, 7.7 × 10<sup>3</sup> M<sup>−1</sup> cm<sup>−1</sup>.<sup class="cite"><a href="references.html#r25">25</a></sup></li>
+        <li>The overall formation constant is \(\log\beta_2 = 17.2\).<sup class="cite"><a href="references.html#r26">26</a></sup> Estimate the fraction of the complex that is dissociated at the stoichiometric point. Why is this plot a sharp triangle while Problem 1 gave a hump?</li>
+        <li>In the protein assay, the BCA reagent is added in large excess over copper. Use your answer to part 1 to explain why.</li>
+        <li>Can this experiment tell Cu(BCA)<sub>2</sub> from Cu<sub>2</sub>(BCA)<sub>4</sub>? What other evidence would decide?</li>
+      </ol>
+      <details class="sol" data-plot="p3">
+        <summary>Show solution</summary>
+        <div class="solbody">
+          <ol>
+            <li>Subtract 0.012 from every reading. The copper-limited branch (\(x_{\text{Cu}} \le 0.30\)) is a straight line \(A \approx 1.157\,x_{\text{Cu}}\); the BCA-limited branch (\(x_{\text{Cu}} \ge 0.40\)) is \(A \approx 0.577\,(1 - x_{\text{Cu}})\). They meet at
+              <div class="formula">\[ 1.157\,x = 0.577\,(1-x) \quad\Longrightarrow\quad x_{\text{Cu}} = \frac{0.577}{1.734} = 0.333 \]</div>
+              Cu : BCA = 1 : 2. With Cu<sup>+</sup> and two BCA<sup>2−</sup>:
+              <div class="formula">\[ \ce{Cu+ + 2BCA^2- -> [Cu(BCA)2]^3-} \]</div></li>
+            <li>On the copper-limited side every Cu<sup>+</sup> is complexed, so \([\text{complex}] = x_{\text{Cu}}c_{\text{T}}\) and \(A = \varepsilon b c_{\text{T}}\,x_{\text{Cu}}\):
+              <div class="formula">\[ \varepsilon = \frac{\text{slope}}{b\,c_{\text{T}}} = \frac{1.157}{(1.00\ \text{cm})(1.50 \times 10^{-4}\ \text{M})} = 7.7 \times 10^{3}\ \text{M}^{-1}\text{cm}^{-1} \]</div>
+              in agreement with the literature value.</li>
+            <li>At \(x_{\text{Cu}} = 1/3\), complete formation would give \(c = 5.00 \times 10^{-5}\) M. With \(n = 2\):
+              <div class="formula">\[ \beta_2 = \frac{1-\alpha}{4\,\alpha^{3}c^{2}} \quad\Longrightarrow\quad \alpha \approx \left(\frac{1}{4\beta_2 c^{2}}\right)^{1/3} = \left(\frac{1}{4(10^{17.2})(5.00 \times 10^{-5})^{2}}\right)^{1/3} \approx 9 \times 10^{-4} \]</div>
+              Less than 0.1% is dissociated, so the reaction is effectively complete and the points fall on the complete-reaction triangle. In Problem 1, \(K_{\text{f}}c\) was only about 0.1, so most of the iron stayed free.</li>
+            <li>Each Cu<sup>+</sup> needs two BCA. If BCA ran short, some Cu<sup>+</sup> would stay uncomplexed (the right-hand branch of the Job plot), and absorbance would no longer be proportional to the copper reduced by protein. A large excess keeps every sample on the copper-limited branch, where \(A\) is linear in [Cu<sup>+</sup>].</li>
+            <li>No. Both have Cu : BCA = 1 : 2 and peak at the same place. Evidence for the monomer: Cu(I) prefers four-coordinate tetrahedral geometry, which two bidentate BCA ligands (N,N each) satisfy exactly; mass spectrometry or a crystal structure would confirm the molar mass.</li>
+          </ol>
+        </div>
+      </details>
+    </article>
+
+    <p class="src-line">Problem systems: Fe(III)–thiocyanate (Frank &amp; Oswalt, 1947), Ni(II)–dimethylglyoxime (Chugaev, 1905), Cu(I)–bicinchoninate (Smith et al., 1985; Brenner &amp; Harris, 1995; Xiao et al., 2011). <a href="references.html">Full references.</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap">All plots are calculated from the equilibrium equations on this page using published constants; the problem data add small random errors to those calculations. · <a href="references.html">References</a> · <a href="https://sunitathyagarajan.github.io/">More modules</a></div></footer>
+
+<script>
+'use strict';
+/* Math typesetting: KaTeX renders every \( \) and \[ \]; mhchem supplies \ce{} for chemical equations. */
+if (typeof renderMathInElement === 'function') {
+  renderMathInElement(document.body, {
+    delimiters: [{left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}],
+    throwOnError: false,
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option', 'svg']
+  });
+}
+/* Every equation stays on one line; one wider than its box is scaled down just enough to fit. */
+function fitEquations() {
+  document.querySelectorAll('.katex-display > .katex').forEach(k => {
+    k.style.fontSize = '';
+    const avail = k.parentElement.clientWidth, need = k.scrollWidth;
+    if (avail > 0 && need > avail + 1) {
+      const base = parseFloat(getComputedStyle(k).fontSize);
+      k.style.fontSize = Math.max(base * 0.6, base * avail / need * 0.98).toFixed(2) + 'px';
+    }
+  });
+}
+fitEquations();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitEquations);
+let fitT; window.addEventListener('resize', () => { clearTimeout(fitT); fitT = setTimeout(fitEquations, 120); });
+document.querySelectorAll('details').forEach(d => d.addEventListener('toggle', fitEquations));
+
+const $ = s => document.querySelector(s);
+const sub = s => `<tspan dy="4" font-size="0.75em">${s}</tspan><tspan dy="-4">​</tspan>`;
+const fmt = (v, d = 2) => v.toFixed(d);
+
+/* ---------- equilibrium solvers ---------- */
+/* One complex MmLn: solve C - beta (a - mC)^m (b - nC)^n = 0 by bisection (the left side rises monotonically with C). */
+function solveC(a, b, m, n, beta) {
+  if (a <= 0 || b <= 0) return 0;
+  let lo = 0, hi = Math.min(a / m, b / n);
+  for (let i = 0; i < 200; i++) {
+    const c = (lo + hi) / 2;
+    if (c - beta * Math.pow(a - m * c, m) * Math.pow(b - n * c, n) > 0) hi = c; else lo = c;
+  }
+  return (lo + hi) / 2;
+}
+/* Stepwise ML, ML2: find free L from the ligand balance. Returns {ML, ML2}. */
+function solveStep(a, b, K1, K2) {
+  if (a <= 0 || b <= 0) return {ML: 0, ML2: 0};
+  let lo = 0, hi = b;
+  const bound = L => { const d = 1 + K1 * L + K1 * K2 * L * L; return a * (K1 * L + 2 * K1 * K2 * L * L) / d; };
+  for (let i = 0; i < 200; i++) { const L = (lo + hi) / 2; if (L + bound(L) - b > 0) hi = L; else lo = L; }
+  const L = (lo + hi) / 2, d = 1 + K1 * L + K1 * K2 * L * L, M = a / d;
+  return {ML: K1 * M * L, ML2: K1 * K2 * M * L * L};
+}
+
+/* ---------- a small SVG chart builder ---------- */
+let clipN = 0;
+function chart(svg, o) {
+  const W = o.W || 640, H = o.H || 390, L = 70, R = 22, T = 18, B = 58;
+  const [x0, x1] = o.x || [0, 1], [y0, y1] = o.y;
+  const X = v => L + (v - x0) / (x1 - x0) * (W - L - R);
+  const Y = v => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
+  const cid = 'clip' + (++clipN);
+  let h = `<defs><clipPath id="${cid}"><rect x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}"/></clipPath></defs>`;
+  (o.yt || []).forEach(v => { h += `<line class="gridl" x1="${L}" x2="${W - R}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}"/><text x="${L - 8}" y="${(Y(v) + 5).toFixed(1)}" text-anchor="end">${o.yf ? o.yf(v) : v}</text>`; });
+  (o.xt || []).forEach(v => { h += `<line class="axis" x1="${X(v).toFixed(1)}" x2="${X(v).toFixed(1)}" y1="${H - B}" y2="${H - B + 5}"/><text x="${X(v).toFixed(1)}" y="${H - B + 21}" text-anchor="middle">${o.xf ? o.xf(v) : v}</text>`; });
+  h += `<line class="axis" x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}"/><line class="axis" x1="${L}" x2="${L}" y1="${T}" y2="${H - B}"/>`;
+  h += `<text class="t-ink" x="${(L + W - R) / 2}" y="${H - 12}" text-anchor="middle">${o.xl}</text>`;
+  h += `<text class="t-ink" transform="translate(18 ${(T + H - B) / 2}) rotate(-90)" text-anchor="middle">${o.yl}</text>`;
+  h += `<g clip-path="url(#${cid})">`;
+  (o.series || []).forEach(s => {
+    const col = s.color || 'var(--accent)';
+    if (s.type === 'dots') {
+      s.pts.forEach(p => { h += `<circle cx="${X(p[0]).toFixed(1)}" cy="${Y(p[1]).toFixed(1)}" r="${s.r || 4.5}" style="fill:${col};stroke:var(--surface);stroke-width:1.5"/>`; });
+    } else if (s.type === 'vline') {
+      h += `<line x1="${X(s.at).toFixed(1)}" x2="${X(s.at).toFixed(1)}" y1="${T}" y2="${H - B}" style="stroke:${col};stroke-width:1.5;stroke-dasharray:${s.dash || '4 4'}"/>`;
+    } else {
+      const d = s.pts.map((p, i) => (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1)).join('');
+      h += `<path d="${d}" style="fill:none;stroke:${col};stroke-width:${s.w || 2.4};stroke-linejoin:round;stroke-linecap:round${s.dash ? ';stroke-dasharray:' + s.dash : ''}"/>`;
+    }
+  });
+  h += '</g>';
+  (o.labels || []).forEach(t => { h += `<text class="halo ${t.cls || 't-ink'}" x="${(X(t.x) + (t.dx || 0)).toFixed(1)}" y="${(Y(t.y) + (t.dy || 0)).toFixed(1)}" text-anchor="${t.anchor || 'middle'}" style="${t.color ? 'fill:' + t.color : ''}">${t.t}</text>`; });
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.innerHTML = h;
+}
+const grid = (n = 200) => Array.from({length: n + 1}, (_, i) => i / n);
+const ticks01 = [0, 0.2, 0.4, 0.6, 0.8, 1];
+function lineFit(pts) {
+  const n = pts.length, sx = pts.reduce((s, p) => s + p[0], 0), sy = pts.reduce((s, p) => s + p[1], 0);
+  const sxx = pts.reduce((s, p) => s + p[0] * p[0], 0), sxy = pts.reduce((s, p) => s + p[0] * p[1], 0);
+  const m = (n * sxy - sx * sy) / (n * sxx - sx * sx); return {m, b: (sy - m * sx) / n};
+}
+function formulaHTML(m, n) { return 'M' + (m > 1 ? `<sub>${m}</sub>` : '') + 'L' + (n > 1 ? `<sub>${n}</sub>` : ''); }
+/* Nearest simple formula to a ligand mole fraction */
+const CANDS = [[3,1],[2,1],[3,2],[1,1],[2,3],[1,2],[1,3],[1,4],[1,5],[1,6]];
+function nearestFormula(xL) { let best = CANDS[0], e = 9; CANDS.forEach(c => { const d = Math.abs(c[1] / (c[0] + c[1]) - xL); if (d < e) { e = d; best = c; } }); return best; }
+function segWire(el, cb) {
+  el.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    el.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', 'true'); cb(b);
+  }));
+}
+
+/* ---------- header: thirteen test tubes, ML2 ---------- */
+(function heroTubes() {
+  const svg = $('#heroTubes'), N = 13, x0 = 34, dx = 41.5;
+  const val = x => Math.min(1 - x, x / 2) * 3; /* complete ML2 formation, scaled to 1 at the peak */
+  let h = '';
+  const cy = 120, ch = 90;
+  h += `<line class="axis" x1="20" x2="540" y1="${cy}" y2="${cy}"/>`;
+  const pts = grid(120).map(x => [x0 + x * dx * (N - 1), cy - ch * val(x)]);
+  h += `<path d="${pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('')}" style="fill:none;stroke:var(--accent);stroke-width:2.4"/>`;
+  for (let i = 0; i < N; i++) {
+    const x = i / (N - 1), cx = x0 + i * dx, v = val(x), top = 158, bot = 262;
+    h += `<circle cx="${cx}" cy="${(cy - ch * v).toFixed(1)}" r="4" style="fill:var(--accent);stroke:var(--surface);stroke-width:1.5"/>`;
+    h += `<path d="M${cx - 12} ${top + 22} V${bot - 12} a12 12 0 0 0 24 0 V${top + 22} Z" style="fill:#7b3fe4;fill-opacity:${(0.06 + 0.88 * v).toFixed(2)};stroke:none"/>`;
+    h += `<path d="M${cx - 13} ${top} V${bot - 12} a13 13 0 0 0 26 0 V${top}" style="fill:none;stroke:var(--muted);stroke-width:1.4"/>`;
+    h += `<line x1="${cx - 16}" x2="${cx + 16}" y1="${top}" y2="${top}" style="stroke:var(--muted);stroke-width:1.4"/>`;
+  }
+  const pk = x0 + 8 * dx;
+  h += `<text class="t-acc" x="${pk}" y="${cy - ch - 10}" text-anchor="middle" style="font-size:16px">ML${sub('2')}</text>`;
+  h += `<line x1="${pk}" x2="${pk}" y1="${cy - ch + 4}" y2="${cy + 34}" style="stroke:var(--accent);stroke-dasharray:3 3"/>`;
+  h += `<text x="${x0}" y="290" text-anchor="middle">x${sub('L')} = 0</text><text x="${x0 + 6 * dx}" y="290" text-anchor="middle">0.5</text><text x="${pk}" y="290" text-anchor="middle" class="t-acc">0.67</text><text x="${x0 + 12 * dx}" y="290" text-anchor="middle">1</text>`;
+  h += `<text x="20" y="18" class="t-ink">Color of complex</text>`;
+  svg.innerHTML = h;
+})();
+
+/* ---------- Section 1: Job plot simulator ---------- */
+(function simA() {
+  let m = 1, n = 2;
+  const s = $('#sA');
+  function draw() {
+    const S = +s.value, cT = 1e-3, beta = Math.pow(10, S) / Math.pow(cT, m + n - 1);
+    const y = x => solveC((1 - x) * cT, x * cT, m, n, beta) / cT;
+    const ideal = x => Math.min((1 - x) / m, x / n);
+    const g = grid(400), curve = g.map(x => [x, y(x)]);
+    let pk = curve[0]; curve.forEach(p => { if (p[1] > pk[1]) pk = p; });
+    const ymax = 1 / (m + n), step = ymax > 0.4 ? 0.1 : 0.05, yt = [];
+    for (let v = 0; v <= ymax * 1.1; v += step) yt.push(+v.toFixed(2));
+    chart($('#plotA'), {x: [0, 1], y: [0, ymax * 1.12], xt: ticks01, yt, yf: v => v.toFixed(2),
+      xl: `Mole fraction of ligand, x${sub('L')}`, yl: `[complex] / c${sub('T')}`,
+      series: [
+        {pts: [[0, 0], [n / (m + n), ideal(n / (m + n))], [1, 0]], color: 'var(--muted)', dash: '6 5', w: 1.6},
+        {pts: curve},
+        {type: 'vline', at: pk[0], color: 'var(--accent)'},
+        {type: 'dots', pts: grid(10).map(x => [x, y(x)])}
+      ],
+      labels: [{x: pk[0], y: ymax * 1.06, t: `peak ${pk[0].toFixed(3)}`, cls: 't-acc'}]
+    });
+    const r = pk[0] / (1 - pk[0]);
+    $('#sAo').textContent = S.toFixed(1);
+    $('#aPk').textContent = pk[0].toFixed(3);
+    $('#aRat').textContent = r.toFixed(2) + ' : 1';
+    $('#aF').innerHTML = formulaHTML(...nearestFormula(pk[0]));
+    $('#aPct').textContent = (100 * pk[1] / ideal(pk[0])).toFixed(0) + '% of maximum';
+    const unit = (m + n - 1) ? ` M<sup>−${m + n - 1}</sup>` : '';
+    $('#aBeta').innerHTML = `10<sup>${Math.log10(beta).toFixed(1)}</sup>${unit}`;
+  }
+  segWire($('#segA'), b => { m = +b.dataset.m; n = +b.dataset.n; draw(); });
+  s.addEventListener('input', draw);
+  draw();
+})();
+
+/* ---------- Section 4: volume drift ---------- */
+(function simV() {
+  let mode = 'abs', n = 1;
+  const s = $('#sV');
+  function signal(x, d, mode, n) {
+    const f = 1 + d * (2 * x - 1);  /* relative volume of this mixture */
+    if (mode === 'abs') {          /* stocks total 10.00 mL, then diluted to a final volume that drifts */
+      const c0 = 1e-3, cT = c0 / f, beta = Math.pow(10, 3.5) / Math.pow(c0, n);
+      return solveC((1 - x) * cT, x * cT, 1, n, beta) * 1800;
+    }
+    const nT = 5e-4 * f;           /* precipitate: total moles delivered drift; complete precipitation, 300 g/mol */
+    return Math.min((1 - x) * nT, x * nT / n) * 300e3;
+  }
+  function draw() {
+    const d = +s.value, g = grid(300);
+    const good = g.map(x => [x, signal(x, 0, mode, n)]), bad = g.map(x => [x, signal(x, d, mode, n)]);
+    const pts = grid(10).map(x => [x, signal(x, d, mode, n)]);
+    const Lf = lineFit(pts.slice(0, 3)), Rf = lineFit(pts.slice(8));
+    const xi = (Rf.b - Lf.b) / (Lf.m - Rf.m), yi = Lf.m * xi + Lf.b;
+    const ymax = Math.max(...good.map(p => p[1]), ...bad.map(p => p[1]), yi) * 1.12;
+    const step = mode === 'abs' ? 0.1 : 10, yt = []; for (let v = 0; v <= ymax; v += step) yt.push(+v.toFixed(2));
+    chart($('#plotV'), {x: [0, 1], y: [0, ymax], xt: ticks01, yt, yf: v => mode === 'abs' ? v.toFixed(1) : v.toFixed(0),
+      xl: `Mole fraction of ligand, x${sub('L')}`, yl: mode === 'abs' ? 'Absorbance' : 'Mass of precipitate (mg)',
+      series: [
+        {pts: good, color: 'var(--muted)', dash: '6 5', w: 1.8},
+        {pts: [[0, Lf.b], [Math.min(1, xi + 0.15), Lf.m * Math.min(1, xi + 0.15) + Lf.b]], color: 'var(--warn)', dash: '5 4', w: 1.6},
+        {pts: [[Math.max(0, xi - 0.15), Rf.m * Math.max(0, xi - 0.15) + Rf.b], [1, Rf.m + Rf.b]], color: 'var(--warn)', dash: '5 4', w: 1.6},
+        {pts: bad, color: 'var(--bad)'},
+        {type: 'dots', pts, color: 'var(--bad)'},
+        {type: 'vline', at: xi, color: 'var(--warn)', dash: '2 3'}
+      ],
+      labels: [{x: xi, y: ymax * 0.96, t: `lines meet at ${xi.toFixed(2)}`, color: 'var(--warn)', cls: ''}]
+    });
+    const trueX = n / (1 + n), fApp = nearestFormula(xi), ok = fApp[0] === 1 && fApp[1] === n;
+    $('#sVo').textContent = (d > 0 ? '+' : '') + d.toFixed(2);
+    $('#vTrue').textContent = trueX.toFixed(3);
+    $('#vApp').textContent = xi.toFixed(3);
+    $('#vF').innerHTML = formulaHTML(...fApp) + (ok ? ' ✓' : ' ✗ (true: ' + formulaHTML(1, n) + ')');
+    $('#vFBox').className = 'stat ' + (ok ? 'good' : 'bad');
+    const v0 = mode === 'abs' ? 25 : 10;
+    $('#vVols').textContent = `${(v0 * (1 - d)).toFixed(1)} mL / ${(v0 * (1 + d)).toFixed(1)} mL`;
+    $('#vModeTxt').innerHTML = mode === 'abs'
+      ? 'Every mixture gets 10.00 mL of equimolar stocks (1.00 mM) but should then be diluted to 25.00 mL. With drift, each flask ends at a different final volume, so c<sub>T</sub> varies.'
+      : 'The volumes of the two equimolar stocks (0.0500 M) should add to 10.00 mL. With drift, they add to more or less than that, so each tube holds a different total number of moles.';
+  }
+  segWire($('#segVm'), b => { mode = b.dataset.v; draw(); });
+  segWire($('#segVf'), b => { n = +b.dataset.n; draw(); });
+  s.addEventListener('input', draw);
+  draw();
+})();
+
+/* ---------- Application 1: Fe(II)-phen ---------- */
+(function app1() {
+  const cT = 2e-4, beta = Math.pow(10, 21.3), eps = 1.11e4;
+  const A = x => eps * solveC(x * cT, (1 - x) * cT, 1, 3, beta); /* x = mole fraction of Fe */
+  chart($('#plotApp1'), {x: [0, 1], y: [0, 0.65], xt: ticks01, yt: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6], yf: v => v.toFixed(1),
+    xl: `Mole fraction of iron, x${sub('Fe')}`, yl: `Absorbance at 510 nm`,
+    series: [
+      {pts: [[0, 0], [0.25, eps * cT * 0.25], [1, 0]], color: 'var(--muted)', dash: '6 5', w: 1.6},
+      {pts: grid(300).map(x => [x, A(x)])},
+      {type: 'dots', pts: grid(10).map(x => [x, A(x)])},
+      {type: 'vline', at: 0.25}
+    ],
+    labels: [{x: 0.25, y: 0.6, t: `x${sub('Fe')} = 0.25 → [Fe(phen)${sub('3')}]${'<tspan dy="-6" font-size="0.75em">2+</tspan><tspan dy="6">​</tspan>'}`, cls: 't-acc', anchor: 'start', dx: 8}]
+  });
+})();
+
+/* ---------- Application 2: HMFc / beta-CD ---------- */
+(function app2() {
+  const K = 478, fr = cT => x => solveC(x * cT, (1 - x) * cT, 1, 1, K) / cT;
+  const a = fr(0.020), b = fr(0.002);
+  chart($('#plotApp2'), {x: [0, 1], y: [0, 0.55], xt: ticks01, yt: [0, 0.1, 0.2, 0.3, 0.4, 0.5], yf: v => v.toFixed(1),
+    xl: `Mole fraction of guest, x${sub('G')}`, yl: `[CD·G] / c${sub('T')}`,
+    series: [
+      {pts: [[0, 0], [0.5, 0.5], [1, 0]], color: 'var(--muted)', dash: '6 5', w: 1.6},
+      {pts: grid(300).map(x => [x, a(x)])},
+      {pts: grid(300).map(x => [x, b(x)]), color: 'var(--data)'},
+      {type: 'dots', pts: grid(10).map(x => [x, a(x)])},
+      {type: 'dots', pts: grid(10).map(x => [x, b(x)]), color: 'var(--data)'},
+      {type: 'vline', at: 0.5}
+    ],
+    labels: [{x: 0.5, y: a(0.5), dy: -12, t: `${(100 * a(0.5) / 0.5).toFixed(0)}% complexed`, cls: 't-acc'},
+             {x: 0.5, y: b(0.5), dy: -12, t: `${(100 * b(0.5) / 0.5).toFixed(0)}% complexed`, color: 'var(--data)', cls: ''}]
+  });
+})();
+
+/* ---------- Application 3: ensemble Job plot of aggregates ---------- */
+(function app3() {
+  const cols = ['var(--data)', 'var(--accent)', 'var(--med)', 'var(--warn)', 'var(--bad)', 'var(--good)', 'var(--pink)'];
+  const binom = (N, k) => { let r = 1; for (let i = 1; i <= k; i++) r = r * (N - k + i) / i; return r; };
+  function draw(N) {
+    const series = [], labels = [];
+    for (let k = 0; k <= N; k++) {
+      const c = cols[k % cols.length];
+      series.push({pts: grid(200).map(x => [x, binom(N, k) * Math.pow(x, k) * Math.pow(1 - x, N - k)]), color: c, w: 2.2});
+      const xp = k / N, yp = binom(N, k) * Math.pow(xp, k) * Math.pow(1 - xp, N - k);
+      const nm = (k ? 'A' + (k > 1 ? sub(k) : '') : '') + (N - k ? 'B' + (N - k > 1 ? sub(N - k) : '') : '');
+      labels.push({x: xp, y: yp, dy: -10, t: nm, color: c, cls: '', anchor: k === 0 ? 'start' : k === N ? 'end' : 'middle', dx: k === 0 ? 6 : k === N ? -6 : 0});
+    }
+    chart($('#plotApp3'), {x: [0, 1], y: [0, 1.1], xt: ticks01, yt: [0, 0.2, 0.4, 0.6, 0.8, 1], yf: v => v.toFixed(1),
+      xl: `Mole fraction of enolate A, X${sub('A')}`, yl: 'Mole fraction of each aggregate', series, labels});
+  }
+  segWire($('#segApp3'), b => draw(+b.dataset.n));
+  draw(4);
+})();
+
+/* ---------- Limitations: two complexes ---------- */
+(function simL() {
+  const s = $('#sL'), cT = 1e-3, K1 = 1e4;
+  function draw() {
+    const K2 = Math.pow(10, +s.value);
+    const f = x => solveStep((1 - x) * cT, x * cT, K1, K2);
+    const g = grid(300).map(x => { const r = f(x); return {x, ML: r.ML / cT, ML2: r.ML2 / cT, S: (r.ML + 1.5 * r.ML2) / cT}; });
+    let pk = g[0]; g.forEach(p => { if (p.S > pk.S) pk = p; });
+    const ymax = Math.max(...g.map(p => p.S)) * 1.15;
+    const yt = []; for (let v = 0; v <= ymax; v += 0.1) yt.push(+v.toFixed(1));
+    chart($('#plotL'), {x: [0, 1], y: [0, ymax], xt: ticks01, yt, yf: v => v.toFixed(1),
+      xl: `Mole fraction of ligand, x${sub('L')}`, yl: `Signal (relative)`,
+      series: [
+        {pts: g.map(p => [p.x, p.ML]), color: 'var(--data)', dash: '6 4', w: 1.8},
+        {pts: g.map(p => [p.x, 1.5 * p.ML2]), color: 'var(--med)', dash: '6 4', w: 1.8},
+        {pts: g.map(p => [p.x, p.S])},
+        {type: 'vline', at: pk.x}
+      ],
+      labels: [{x: pk.x, y: ymax * 0.95, t: `peak ${pk.x.toFixed(2)}`, cls: 't-acc'}]
+    });
+    const totM = 1 - pk.x, free = totM - pk.ML - pk.ML2;
+    $('#sLo').textContent = (+s.value).toFixed(1);
+    $('#lPk').textContent = pk.x.toFixed(3);
+    $('#lRat').textContent = (pk.x / (1 - pk.x)).toFixed(2) + ' : 1';
+    $('#lMix').textContent = `ML ${(100 * pk.ML / totM).toFixed(0)}% · ML₂ ${(100 * pk.ML2 / totM).toFixed(0)}% · free M ${(100 * Math.max(0, free) / totM).toFixed(0)}%`;
+  }
+  s.addEventListener('input', draw);
+  draw();
+})();
+
+/* ---------- Problem plots (fits appear when the solution is opened) ---------- */
+const P1 = [[1, 0], [0.9, 0.183], [0.8, 0.330], [0.7, 0.429], [0.6, 0.495], [0.5, 0.512], [0.4, 0.496], [0.3, 0.432], [0.2, 0.326], [0.1, 0.185], [0, 0]];
+const P2 = [[0, 0], [0.1, 14.1], [0.2, 28.4], [0.3, 42.9], [0.4, 42.7], [0.5, 35.6], [0.6, 28.5], [0.7, 21.4], [0.8, 14.0], [0.9, 7.0], [1, 0]];
+const P3raw = [[0, 0.012], [0.1, 0.129], [0.2, 0.241], [0.25, 0.302], [0.3, 0.360], [0.35, 0.384], [0.4, 0.359], [0.5, 0.299], [0.6, 0.245], [0.7, 0.186], [0.8, 0.126], [0.9, 0.072], [1, 0.012]];
+const P3 = P3raw.map(p => [p[0], +(p[1] - 0.012).toFixed(3)]);
+function drawP1(fit) {
+  const s = [{type: 'dots', pts: P1}];
+  if (fit) s.unshift({pts: grid(200).map(x => [x, 4700 * solveC(x * 2e-3, (1 - x) * 2e-3, 1, 1, 137)])}, {type: 'vline', at: 0.5});
+  chart($('#plotP1'), {x: [0, 1], y: [0, 0.6], xt: ticks01, yt: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6], yf: v => v.toFixed(1),
+    xl: `Mole fraction of iron, x${sub('Fe')}`, yl: 'Absorbance at 447 nm', series: s,
+    labels: fit ? [{x: 0.5, y: 0.56, t: 'K = 1.4 × 10² M⁻¹, peak 0.50', cls: 't-acc'}] : []});
+}
+function drawP2(fit) {
+  const s = [{type: 'dots', pts: P2}];
+  if (fit) {
+    const L = lineFit(P2.slice(0, 4)), R = lineFit(P2.slice(5)), xi = (R.b - L.b) / (L.m - R.m);
+    s.unshift({pts: [[0, L.b], [0.5, L.m * 0.5 + L.b]], color: 'var(--warn)', dash: '5 4', w: 1.8},
+              {pts: [[0.2, R.m * 0.2 + R.b], [1, R.m + R.b]], color: 'var(--warn)', dash: '5 4', w: 1.8}, {type: 'vline', at: xi});
+    drawP2.xi = xi; drawP2.yi = L.m * xi + L.b;
+  }
+  chart($('#plotP2'), {x: [0, 1], y: [0, 60], xt: ticks01, yt: [0, 10, 20, 30, 40, 50, 60],
+    xl: `Mole fraction of nickel, x${sub('Ni')}`, yl: 'Mass of precipitate (mg)', series: s,
+    labels: fit ? [{x: drawP2.xi, y: 55, t: `lines meet at ${drawP2.xi.toFixed(3)}, ${drawP2.yi.toFixed(1)} mg`, cls: 't-acc', anchor: 'start', dx: 8}] : []});
+}
+function drawP3(fit) {
+  const s = [{type: 'dots', pts: P3}];
+  if (fit) {
+    const L = lineFit(P3.slice(0, 5)), R = lineFit(P3.slice(6)), xi = (R.b - L.b) / (L.m - R.m);
+    s.unshift({pts: [[0, L.b], [0.5, L.m * 0.5 + L.b]], color: 'var(--warn)', dash: '5 4', w: 1.8},
+              {pts: [[0.2, R.m * 0.2 + R.b], [1, R.m + R.b]], color: 'var(--warn)', dash: '5 4', w: 1.8}, {type: 'vline', at: xi});
+    drawP3.xi = xi; drawP3.sl = L.m;
+  }
+  chart($('#plotP3'), {x: [0, 1], y: [0, 0.5], xt: ticks01, yt: [0, 0.1, 0.2, 0.3, 0.4, 0.5], yf: v => v.toFixed(1),
+    xl: `Mole fraction of copper, x${sub('Cu')}`, yl: 'Absorbance at 562 nm (blank-corrected)', series: s,
+    labels: fit ? [{x: drawP3.xi, y: 0.46, t: `lines meet at ${drawP3.xi.toFixed(3)}; slope ${drawP3.sl.toFixed(3)}`, cls: 't-acc', anchor: 'start', dx: 8}] : []});
+}
+const PD = {p1: drawP1, p2: drawP2, p3: drawP3};
+Object.values(PD).forEach(f => f(false));
+document.querySelectorAll('details.sol').forEach(d => d.addEventListener('toggle', () => PD[d.dataset.plot](d.open)));
+</script>
+</body>
+</html>
