@@ -167,6 +167,7 @@ button:hover{border-color:var(--muted)}
 .plot .gridl{stroke:var(--grid);stroke-width:1}
 .plot .halo{stroke:var(--surface);stroke-width:4px;paint-order:stroke;stroke-linejoin:round}
 figure.fig{margin:0;display:grid;gap:6px}
+#sandPlot{max-width:420px}
 figure.fig figcaption{font-size:.86rem;color:var(--muted)}
 
 /* tables */
@@ -228,12 +229,13 @@ footer .wrap{padding-block:20px 48px}
   <div class="wrap">
     <a class="back" href="https://sunitathyagarajan.github.io/">← More modules</a>
     <span class="eyebrow">Analytical &amp; coordination chemistry · Stoichiometry in solution</span>
-    <h1>Where the Curve Peaks, the Formula Hides</h1>
+    <h1>Find the Peak, Find the Formula</h1>
     <p class="subtitle">Job’s method of continuous variation</p>
-    <p class="lead">How many ligands does one metal ion hold? How many cyclodextrin rings wrap one drug molecule? Often you cannot pull the complex out of solution to weigh it. Instead, mix the two partners in every proportion while keeping the total amount fixed, measure one property of each mixture, and look for the mixture that makes the most product. Its composition is the formula.</p>
+    <p class="lead">How many ligands does one metal ion hold? How many cyclodextrin rings wrap one drug molecule?</p>
+    <p class="lead">Oftentimes you cannot pull the complex out of solution to weigh it. Instead, mix equal-concentration solutions of the metal ion and ligand (or the cation and anion) in every proportion, keeping the total volume, and so the total concentration, the same in each mixture. Measure one property of each mixture and find the one that makes the most product. The mole ratio at the point of maximum product is the formula of the complex.</p>
     <div class="reading">
       <figure class="bfig">
-        <svg class="plot" id="heroTubes" viewBox="0 0 560 300" role="img" aria-label="Thirteen test tubes in a row. Each holds the same total volume, but the fraction of ligand rises from 0 on the left to 1 on the right. The violet color of the complex is faint at both ends and darkest in the ninth tube, where two-thirds of the mixture is ligand. A curve above the tubes traces the color intensity and peaks at that tube, labelled M L two."></svg>
+        <svg class="plot" id="heroTubes" viewBox="0 0 560 300" role="img" aria-label="Thirteen test tubes in a row. Each holds the same total volume, but the fraction of ligand rises from 0 on the left to 1 on the right. The violet color of the complex is faint at both ends and darkest in the ninth tube, where two-thirds of the mixture is ligand. A curve above the tubes traces the color intensity and peaks at that tube, labeled M L two."></svg>
         <figcaption>Thirteen mixtures, same total volume, same total moles. Color comes only from the complex, so the darkest tube is the one where neither partner is left over. Here it sits at two-thirds ligand: two L for every M, so the complex is ML<sub>2</sub>.</figcaption>
       </figure>
       <div class="rtext">
@@ -246,7 +248,7 @@ footer .wrap{padding-block:20px 48px}
             <div><dt>\(n\)</dt><dd>number of ligand (L) units in the complex</dd></div>
           </dl>
         </div>
-        <span class="cap">Read the peak position, invert the equation, and you have the combining ratio \(n/m\). A peak at 0.50 means 1:1, at 0.67 means 1:2, at 0.75 means 1:3.</span>
+        <span class="cap">Read the peak position, invert the equation, and you have the combining ratio \(n/m\). A peak at 0.50 means M : L = 1:1, at 0.67 means 1:2, and at 0.75 means 1:3.</span>
       </div>
     </div>
   </div>
@@ -278,16 +280,40 @@ footer .wrap{padding-block:20px 48px}
 
     <div class="cards">
       <div class="card top">
-        <span class="klabel">The idea in one sentence</span>
+        <span class="klabel">The idea in brief</span>
         <p>Keep the <b>total</b> number of moles of the two partners constant, vary the <b>proportion</b> continuously from all M to all L, and plot a property that depends on how much product formed. The product is greatest where the reactants are mixed in exactly the ratio in which they combine.</p>
       </div>
       <div class="card top">
         <span class="klabel">An everyday analogy</span>
-        <p>You have 12 slices in total, some bread and some cheese, and each sandwich needs 2 bread + 1 cheese. With 6 bread + 6 cheese you make 3 sandwiches; with 10 bread + 2 cheese you make 2. The most sandwiches (4) come from 8 bread + 4 cheese, a cheese fraction of exactly 1/3. The “peak” gives the recipe.</p>
+        <p>You have 12 slices in total, some bread and some cheese, and each sandwich needs 2 bread + 1 cheese. With 6 bread + 6 cheese you make 3 sandwiches; with 10 bread + 2 cheese you make 2. The most sandwiches (4) come from 8 bread + 4 cheese, a cheese fraction of exactly 1/3. The “peak” gives the recipe. Try it in the drawing below.</p>
       </div>
       <div class="card top">
         <span class="klabel">Why it works</span>
         <p>Away from the ideal ratio, one reactant runs out first and the other is left over, wasted. Only at the stoichiometric ratio are both used up together, so the amount of product, and any signal proportional to it, reaches its maximum.</p>
+      </div>
+    </div>
+
+    <div class="bench" id="simS">
+      <div class="bhead">
+        <span class="tagi">Interactive · The analogy, drawn</span>
+        <h3>Twelve slices, one recipe: 2 bread + 1 cheese</h3>
+        <p class="note">Bread plays the ligand (L), cheese plays the metal ion (M), and each sandwich is a complex ML<sub>2</sub>. The total number of slices stays at 12, just as the total moles stay fixed in a Job series. Move the slider to change how many of the 12 are cheese.</p>
+      </div>
+      <div class="bench-grid">
+        <figure class="fig">
+          <svg class="plot" id="sandStack" role="img" aria-label="Twelve slices of bread and cheese in a row, and below them the sandwiches that can be made from them. Slices that cannot be used are faded and marked as left over."></svg>
+          <div class="legend"><span><i class="dot" style="--c:#d9a35c"></i>bread (ligand, L)</span><span><i class="dot" style="--c:#f2c230"></i>cheese (metal, M)</span><span>faded = left over</span></div>
+        </figure>
+        <div class="side">
+          <label class="ctl slider" for="sS"><span>Cheese slices out of 12: <output id="sSo"></output></span>
+            <input type="range" id="sS" min="0" max="12" step="1" value="6"></label>
+          <svg class="plot" id="sandPlot" role="img" aria-label="A mini Job plot: number of sandwiches against the fraction of slices that are cheese. The points rise to a peak of 4 sandwiches at a cheese fraction of one-third, then fall."></svg>
+          <div class="statgrid">
+            <div class="stat"><div class="k">Sandwiches made</div><div class="v" id="sMade"></div></div>
+            <div class="stat"><div class="k">Left over</div><div class="v" id="sLeft"></div></div>
+          </div>
+          <p class="hint" id="sMsg"></p>
+        </div>
       </div>
     </div>
 
@@ -478,7 +504,7 @@ footer .wrap{padding-block:20px 48px}
 
       <div class="card top" style="--rc:var(--med)">
         <span class="klabel">3 · NMR spectroscopy</span>
-        <p>In fast exchange, an observed chemical shift is an average of free and bound forms. The shift change \(\Delta\delta\) is proportional to the <i>fraction</i> bound, so multiply it by the mole fraction of the observed species to get something proportional to the amount of complex.</p>
+        <p>In fast exchange, an observed chemical shift is an average of free and bound forms. The shift change \(\Delta\delta\) is proportional to the <i>fraction</i> bound, so multiply it by the mole fraction of the species you are watching (here a host H that binds a guest G) to get a quantity proportional to the amount of complex.</p>
         <div class="formula">\[ Y = \Delta\delta_{\text{obs}}\,x_{\text{H}} \;\propto\; [\mathrm{HG}] \]</div>
         <div class="example"><b>Literature:</b> Collum and co-workers used <sup>6</sup>Li NMR Job plots to work out how lithium enolates of simple ketones aggregate in solution: mixing two enolates creates mixed aggregates whose number and proportions reveal the aggregate size.<sup class="cite"><a href="references.html#r12">12</a></sup> (See Application 3.)</div>
         <p class="why"><b>Watch for:</b> slow exchange (separate peaks, so integrate instead), and the need to choose a proton whose shift changes clearly.</p>
@@ -505,7 +531,7 @@ footer .wrap{padding-block:20px 48px}
         <span class="klabel">6 · Potentiometric</span>
         <p>An ion-selective electrode (or a pH electrode) reports the activity of <i>free</i> metal ion (or of H<sup>+</sup> released on binding). The amount bound is what is missing from the total.</p>
         <div class="formula">\[ E = E^{\circ\prime} + \frac{RT}{zF}\ln[\mathrm{M}]_{\text{free}} \qquad Y = c_{\text{M}} - [\mathrm{M}]_{\text{free}} \]</div>
-        <div class="example"><b>Literature:</b> Work on copper–citrate solutions measured free Cu<sup>2+</sup> with a copper ion-selective electrode and analysed the mixtures by Job’s method as modified by Vosburgh and Cooper, pointing to a 1:1 copper–citrate complex.<sup class="cite"><a href="references.html#r15">15</a></sup></div>
+        <div class="example"><b>Literature:</b> Work on copper–citrate solutions measured free Cu<sup>2+</sup> with a copper ion-selective electrode and analyzed the mixtures by Job’s method as modified by Vosburgh and Cooper, pointing to a 1:1 copper–citrate complex.<sup class="cite"><a href="references.html#r15">15</a></sup></div>
         <p class="why"><b>Watch for:</b> the electrode responds to activity, so ionic strength must be held constant; slow electrode response at low concentrations.</p>
       </div>
 
@@ -699,14 +725,14 @@ footer .wrap{padding-block:20px 48px}
     <div class="sechead">
       <span class="eyebrow">Section 5</span>
       <h2>Three applications in chemistry, and where the method breaks down</h2>
-      <p class="prose muted">Each plot below is calculated from constants published for that system, so its shape is what an experiment would give under the stated conditions.</p>
+      <p class="prose muted">The plots for Applications 1 and 2 are calculated from constants published for those systems, so their shapes are what an experiment would give under the stated conditions. The plot for Application 3 shows the ideal statistical distribution that real data are compared against.</p>
     </div>
 
     <!-- App 1 -->
     <div class="subhead"><span class="klabel">Application 1 · Analytical chemistry</span><h3>Designing an assay: iron with 1,10-phenanthroline</h3></div>
     <div class="two">
       <figure class="fig card">
-        <svg class="plot" id="plotApp1" role="img" aria-label="Job plot for iron(II) and 1,10-phenanthroline: absorbance at 510 nanometres against mole fraction of iron. The points form a sharp triangle with its peak at a mole fraction of 0.25."></svg>
+        <svg class="plot" id="plotApp1" role="img" aria-label="Job plot for iron(II) and 1,10-phenanthroline: absorbance at 510 nanometers against mole fraction of iron. The points form a sharp triangle with its peak at a mole fraction of 0.25."></svg>
         <figcaption>Job plot for Fe<sup>2+</sup> + phen, \(c_{\text{T}} = 2.00 \times 10^{-4}\) M, 1.00 cm cell, 510 nm. Calculated with \(\log\beta_3 = 21.3\) and \(\varepsilon_{510} = 1.11 \times 10^{4}\ \text{M}^{-1}\text{cm}^{-1}\).<sup class="cite"><a href="references.html#r20">20,27</a></sup></figcaption>
       </figure>
       <div class="card">
@@ -813,7 +839,7 @@ footer .wrap{padding-block:20px 48px}
       </div>
       <div class="card top" style="--rc:var(--muted)">
         <h4>7 · Constant total concentration is restrictive</h4>
-        <p>You sample only one \(c_{\text{T}}\). Fitting a binding constant reliably usually needs a titration over a wider range (hold one partner fixed and add the other), analysed by global non-linear fitting.<sup class="cite"><a href="references.html#r9">9,10</a></sup></p>
+        <p>You sample only one \(c_{\text{T}}\). Fitting a binding constant reliably usually needs a titration over a wider range (hold one partner fixed and add the other), analyzed by global nonlinear fitting.<sup class="cite"><a href="references.html#r9">9,10</a></sup></p>
       </div>
       <div class="card top" style="--rc:var(--muted)">
         <h4>8 · Practical limits</h4>
@@ -867,7 +893,7 @@ footer .wrap{padding-block:20px 48px}
           <ol>
             <li>\(x_{\text{Fe}} = V_{\text{Fe}}/10.00\), so the mixtures run from 1.0 to 0.0 in steps of 0.1. The maximum (0.512) is at \(x_{\text{Fe}} = 0.50\) and the plot is symmetric about it, so Fe : SCN = 1 : 1.
               <div class="formula">\[ \ce{Fe^3+ + SCN- <=> FeSCN^2+} \]</div></li>
-            <li>The complex is only moderately stable, so a sizeable fraction stays dissociated at every composition, rounding the peak. Points near the ends still lie on a curve, not on the complete-reaction lines, so lines drawn through them would meet far above the data and give an unreliable \(A_{\text{ext}}\). The peak position is still trustworthy because only one complex forms (Section 2).</li>
+            <li>The complex is only moderately stable, so a sizable fraction stays dissociated at every composition, rounding the peak. Points near the ends still lie on a curve, not on the complete-reaction lines, so lines drawn through them would meet far above the data and give an unreliable \(A_{\text{ext}}\). The peak position is still trustworthy because only one complex forms (Section 2).</li>
             <li>At the peak, \(c_{\text{Fe}} = c_{\text{SCN}} = 1.00 \times 10^{-3}\) M.
               <div class="formula">\[ [\ce{FeSCN^2+}] = \frac{A}{\varepsilon b} = \frac{0.512}{(4.70 \times 10^{3}\ \text{M}^{-1}\text{cm}^{-1})(1.00\ \text{cm})} = 1.09 \times 10^{-4}\ \text{M} \]</div>
               <div class="formula">\[ [\ce{Fe^3+}] = [\ce{SCN-}] = 1.00 \times 10^{-3} - 1.09 \times 10^{-4} = 8.91 \times 10^{-4}\ \text{M} \]</div>
@@ -975,7 +1001,7 @@ footer .wrap{padding-block:20px 48px}
               in agreement with the literature value.</li>
             <li>At \(x_{\text{Cu}} = 1/3\), complete formation would give \(c = 5.00 \times 10^{-5}\) M. With \(n = 2\):
               <div class="formula">\[ \beta_2 = \frac{1-\alpha}{4\,\alpha^{3}c^{2}} \quad\Longrightarrow\quad \alpha \approx \left(\frac{1}{4\beta_2 c^{2}}\right)^{1/3} = \left(\frac{1}{4(10^{17.2})(5.00 \times 10^{-5})^{2}}\right)^{1/3} \approx 9 \times 10^{-4} \]</div>
-              Less than 0.1% is dissociated, so the reaction is effectively complete and the points fall on the complete-reaction triangle. In Problem 1, \(K_{\text{f}}c\) was only about 0.1, so most of the iron stayed free.</li>
+              Less than 0.1% is dissociated, so the reaction is effectively complete and the points fall on the complete-reaction triangle. In Problem 1, \(K_{\text{f}}c\) was only about 0.14, so most of the iron stayed free.</li>
             <li>Each Cu<sup>+</sup> needs two BCA. If BCA ran short, some Cu<sup>+</sup> would stay uncomplexed (the right-hand branch of the Job plot), and absorbance would no longer be proportional to the copper reduced by protein. A large excess keeps every sample on the copper-limited branch, where \(A\) is linear in [Cu<sup>+</sup>].</li>
             <li>No. Both have Cu : BCA = 1 : 2 and peak at the same place. Evidence for the monomer: Cu(I) prefers four-coordinate tetrahedral geometry, which two bidentate BCA ligands (N,N each) satisfy exactly; mass spectrometry or a crystal structure would confirm the molar mass.</li>
           </ol>
@@ -1113,6 +1139,58 @@ function segWire(el, cb) {
   h += `<text x="${x0}" y="290" text-anchor="middle">x${sub('L')} = 0</text><text x="${x0 + 6 * dx}" y="290" text-anchor="middle">0.5</text><text x="${pk}" y="290" text-anchor="middle" class="t-acc">0.67</text><text x="${x0 + 12 * dx}" y="290" text-anchor="middle">1</text>`;
   h += `<text x="20" y="18" class="t-ink">Color of complex</text>`;
   svg.innerHTML = h;
+})();
+
+/* ---------- Section 1: the sandwich analogy ---------- */
+(function simS() {
+  const s = $('#sS'), BREAD = '#d9a35c', CHEESE = '#f2c230', TOTAL = 12;
+  const made = c => Math.min(Math.floor((TOTAL - c) / 2), c);
+  function draw() {
+    const c = +s.value, b = TOTAL - c, S = made(c), lb = b - 2 * S, lc = c - S;
+    /* Row of all 12 slices: bread first, then cheese. Used slices are solid; leftovers are faded with a dashed edge. */
+    let h = `<text x="10" y="20" class="t-ink">Your 12 slices: ${b} bread + ${c} cheese</text>`;
+    for (let i = 0; i < TOTAL; i++) {
+      const isBread = i < b, used = isBread ? i < 2 * S : (i - b) < S, x = 10 + i * 46;
+      h += `<rect x="${x}" y="32" width="38" height="38" rx="${isBread ? 10 : 3}" style="fill:${isBread ? BREAD : CHEESE};fill-opacity:${used ? 1 : 0.22};stroke:${used ? 'var(--ink)' : 'var(--muted)'};stroke-width:1.2;${used ? '' : 'stroke-dasharray:4 3'}"/>`;
+      if (!used) h += `<text x="${x + 19}" y="88" text-anchor="middle" class="t-sm">left</text>`;
+    }
+    h += `<text x="10" y="122" class="t-ink">Sandwiches made: ${S}</text>`;
+    /* Each sandwich: bread, cheese, bread */
+    for (let k = 0; k < S; k++) {
+      const x = 14 + k * 120, y = 140;
+      h += `<rect x="${x}" y="${y}" width="96" height="20" rx="9" style="fill:${BREAD};stroke:var(--ink);stroke-width:1.2"/>`;
+      h += `<path d="M${x - 2} ${y + 22} h100 l-6 9 l-8 -4 l-10 7 l-9 -5 l-12 6 l-10 -5 l-11 6 l-10 -6 l-9 5 l-15 -6 Z" style="fill:${CHEESE};stroke:var(--ink);stroke-width:1.2;stroke-linejoin:round"/>`;
+      h += `<rect x="${x}" y="${y + 36}" width="96" height="20" rx="9" style="fill:${BREAD};stroke:var(--ink);stroke-width:1.2"/>`;
+    }
+    if (!S) h += `<text x="14" y="175" class="t-sm">No sandwiches: there is no cheese, or not enough bread.</text>`;
+    const left = [];
+    if (lb) left.push(`${lb} bread`);
+    if (lc) left.push(`${lc} cheese`);
+    h += `<text x="10" y="232" class="${lb + lc ? '' : 't-acc'}">${lb + lc ? 'Wasted: ' + left.join(' + ') + ' (the reactant in excess)' : 'Nothing wasted: the slices are in exactly the 2 : 1 ratio'}</text>`;
+    const svg = $('#sandStack'); svg.setAttribute('viewBox', '0 0 562 245'); svg.innerHTML = h;
+
+    const pts = Array.from({length: TOTAL + 1}, (_, k) => [k / TOTAL, made(k)]);
+    chart($('#sandPlot'), {W: 420, H: 280, x: [0, 1], y: [0, 4.8], xt: [0, 1/3, 2/3, 1], xf: v => ['0', '1/3', '2/3', '1'][Math.round(v * 3)], yt: [0, 1, 2, 3, 4],
+      xl: 'Fraction of slices that are cheese', yl: 'Sandwiches',
+      series: [
+        {pts: [[0, 0], [1/3, 4], [1, 0]], color: 'var(--muted)', dash: '6 5', w: 1.6},
+        {type: 'vline', at: c / TOTAL},
+        {type: 'dots', pts, color: 'var(--muted)', r: 3.5},
+        {type: 'dots', pts: [[c / TOTAL, S]], r: 7}
+      ],
+      labels: [{x: 1/3, y: 4, dy: -10, t: 'peak: 1/3 cheese', cls: 't-acc'}]
+    });
+    $('#sSo').textContent = c;
+    $('#sMade').textContent = S;
+    $('#sLeft').textContent = lb + lc ? left.join(' + ') : 'none';
+    $('#sMsg').innerHTML = c === 4
+      ? '<b>The peak.</b> With 4 cheese and 8 bread, every slice is used. The cheese fraction, 1/3, tells you the recipe: 1 cheese for every 2 bread, just as a Job plot peak at x<sub>M</sub> = 1/3 tells you the complex is ML<sub>2</sub>.'
+      : c < 4
+        ? '<b>Cheese is limiting.</b> Bread is left over, so you make fewer sandwiches than the maximum. This is the rising side of the Job plot.'
+        : '<b>Bread is limiting.</b> Cheese is left over, so you make fewer sandwiches than the maximum. This is the falling side of the Job plot.';
+  }
+  s.addEventListener('input', draw);
+  draw();
 })();
 
 /* ---------- Section 1: Job plot simulator ---------- */
