@@ -11,12 +11,13 @@ An interactive teaching module on Job's method of continuous variation for chemi
 3. **Types of measurement:** spectrophotometric, fluorescence, NMR, gravimetric, thermometric, potentiometric, conductometric, ESI-MS, capillary electrophoresis, variable-path-length absorbance and other physical properties, each with a literature example
 4. **Constant volume:** why it is needed, and an interactive showing how volume drift changes the reported formula
 5. **Applications and limitations:** iron–phenanthroline, cyclodextrin inclusion complexes, lithium enolate aggregates (each with a plot), then the method's limitations with a two-complex simulator
-6. **Problems:** Fe(III)–thiocyanate, Ni(II)–dimethylglyoxime and Cu(I)–bicinchoninate, with collapsible worked solutions
+6. **Other methods, compared:** mole-ratio, slope-ratio, titration with nonlinear fitting, Benesi–Hildebrand, Bjerrum potentiometry, ITC, ESI-MS, diffusion NMR, colligative properties, phase solubility and X-ray crystallography, with advantages, limitations, a comparison table and an interactive comparing Job, mole-ratio and slope-ratio plots
+7. **Problems:** Fe(III)–thiocyanate, Ni(II)–dimethylglyoxime and Cu(I)–bicinchoninate, with collapsible worked solutions
 
 ## Files
 
 - `index.html`: the module itself, one self-contained page
-- `references.html`: the 27 sources cited in the module
+- `references.html`: the 35 sources cited in the module
 
 All text is set in Calibri (Carlito as the free fallback); equations are typeset with KaTeX and mhchem.
 
